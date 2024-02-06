@@ -83,7 +83,7 @@ ${Reset}
 body {
   font-family: 'Pretendard', sans-serif;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 14px;
   height: calc(var(--vh, 1vh) * 100);
   color: ${props => props.theme.fontColor};
   ::-webkit-scrollbar {
@@ -97,7 +97,7 @@ a {
 button {
   font-family: 'Pretendard', sans-serif;
   background: transparent;
-  font-size: 16px;
+  font-size: 14px;
   color: ${props => props.theme.fontColor};
   border: 0 none;
   outline:none;
@@ -111,10 +111,11 @@ ol, ul, li {
 select, option {
   background: transparent;
   font-family: 'Pretendard', sans-serif;
-  -webkit-appearance:none; /* for chrome */
+  // -webkit-appearance:none; /* for chrome */
   -moz-appearance:none; /*for firefox*/
-  appearance:none;
+  // appearance:none;
   color: ${props => props.theme.fontColor};
+  font-size: 14px;
 }
 a, button, input {
   font-family: 'Pretendard', sans-serif;
@@ -123,6 +124,8 @@ a, button, input {
   -webkit-border-radius: 0;
   -webkit-tap-highlight-color: transparent;
   outline:none;
+  border: none;
+
 }
 
 `;
