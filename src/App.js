@@ -9,7 +9,8 @@ import GlobalStyles from './styles/GlobalStyles';
 //routes
 import Sidebar from './components/Sidebar/Sidebar';
 import Signin from './routes/Signin';
-import Illegal from './routes/Illegal';
+import Illegal from './routes/Illegal/Illegal';
+import IllegalPopup from './routes/Illegal/IllegalPopup';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <GlobalStyles />
         <Sidebar />
         <Routes>
+          <Route path="/illegal/popup" element={<IllegalPopup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/" element={<Illegal />} />
         </Routes>

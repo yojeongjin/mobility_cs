@@ -1,9 +1,14 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
+//icons
 import { VscSignOut } from 'react-icons/vsc';
 
 export default function Sidebar() {
+  const location = useLocation();
+  if (window.location.pathname === '/illegal/popup') return null;
+
   return (
     <SidebarBase>
       <Inner>
@@ -14,7 +19,7 @@ export default function Sidebar() {
           <MenuItem>
             <ItemH2>공유주차</ItemH2>
             <SubMenu>
-              <SubItem>부정주차</SubItem>
+              <SubItem isLocation={location.pathname === '/'}>부정주차</SubItem>
               <SubItem>공사중·삭선</SubItem>
             </SubMenu>
           </MenuItem>
@@ -95,7 +100,8 @@ const SubMenu = styled.ul``;
 
 const SubItem = styled.li`
   padding: 8px 0;
-  color: #aaa;
+  // color: #aaa;
+  color: ${props => (props.isLocation ? '#25D663' : '#aaa')};
   &:first-child {
     margin-top: 10px;
   }
@@ -117,7 +123,7 @@ const SignoutBtn = styled.button`
   justify-content: center;
   padding: 11px 0;
   font-size: 13px;
-  border-radius: 10px;
+  border-radius: 15px;
   color: #e0e0e0;
   &:hover {
     color: #fff;

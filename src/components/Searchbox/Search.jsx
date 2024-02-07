@@ -11,7 +11,7 @@ export default function Search() {
         <SearchDate></SearchDate>
         <SearchWrapper>
           <Select>
-            <Option>(할인유형)</Option>
+            <Option>(전체보기)</Option>
           </Select>
           <SearchInput />
           <SearchBtn>조회</SearchBtn>
@@ -56,10 +56,10 @@ const SearchWrapper = styled.div`
 const Select = styled.select`
   width: 100px;
   height: 100%;
-  padding: 0 10px;
   border: none;
   border-right: 1px solid #aaa;
   color: #555;
+  text-align: center;
 `;
 
 const Option = styled.option``;
@@ -90,6 +90,9 @@ const DownloadBtn = styled.button`
   height: 100%;
   padding: 0 20px;
   color: #797979;
+  &:hover {
+    color: ${props => props.theme.fontColor};
+  }
 `;
 
 const DownloadIcon = styled(BsDownload)`
