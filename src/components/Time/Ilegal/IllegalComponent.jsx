@@ -9,32 +9,25 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core';
-
-// components
-import Main from '../../Main/Main';
+// icons
+import { SiMicrosoftexcel, SiResearchgate } from 'react-icons/si';
+import Pagination from '../../Pagination/Pagination';
 import Search from '../../Searchbox/Search';
 
-export default function IllegalComponent() {
-  const openPopup = () => {
-    const url = 'http://localhost:3000/illegal/popup';
-    const width = 1400;
-    const height = 770;
-
-    // 팝업을 부모 브라우저의 정중앙에 위치하도록함
-    const left = window.screenX + (window.outerWidth - width) / 2;
-    const top = window.screenY + (window.outerHeight - height) / 2;
-
-    window.open(url, '_blank', `width=${width},height=${height},left=${left},top=${top}`);
-  };
-
+export default function IllegalComponent(props) {
+  const { openPopup } = props;
   return (
-    <Main>
+    <>
       <IllegalH1>부정주차 접수</IllegalH1>
       <IllegalP>부정주차 설명 부정주차 설명 부정주차 설명 부정주차 설명</IllegalP>
       {/* 검색 */}
-      <Search />
+
       {/* Table */}
       <TableBase>
+        <Search />
+        {/* <DownloadBtn>
+          <DownloadIcon /> 엑셀 다운로드
+        </DownloadBtn> */}
         <StyledTableContainer>
           <Table size="small">
             {/* Table Head */}
@@ -94,7 +87,8 @@ export default function IllegalComponent() {
           </Table>
         </StyledTableContainer>
       </TableBase>
-    </Main>
+      <Pagination />
+    </>
   );
 }
 
@@ -107,15 +101,37 @@ const IllegalH1 = styled.h1`
 
 const IllegalP = styled.p`
   padding: 10px 0;
+  margin-bottom: 50px;
   color: #aaa;
   font-weight: 300;
   letter-spacing: -1px;
 `;
 
-const TableBase = styled.div``;
+const DownloadBtn = styled.button`
+  display: flex;
+  align-items: center;
+  float: right;
+  padding: 12px;
+  color: #797979;
+  &:hover {
+    color: ${props => props.theme.fontColor};
+  }
+`;
+
+const DownloadIcon = styled(SiMicrosoftexcel)`
+  font-size: 16px;
+  margin-right: 5px;
+  color: ${props => props.theme.primaryDark};
+`;
+
+const TableBase = styled.div`
+  min-height: 550px;
+  // border-bottom: 1px solid #f0f0f0;
+  // border: 1px solid purple;
+`;
 
 const StyledTableContainer = styled(TableContainer)`
-  max-height: 450px;
+  max-height: 500px;
   border-top: 1.5px solid black;
   padding: 3px 0;
 `;

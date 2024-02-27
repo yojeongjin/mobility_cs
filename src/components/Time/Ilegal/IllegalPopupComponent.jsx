@@ -18,7 +18,10 @@ export default function IllegalPopupComponent() {
         <ReferenceImg>
           <ImgH2>증빙 서류</ImgH2>
           <ReferenceProcess>
-            <AgreeCheck>전체선택</AgreeCheck>
+            <AgreeCheck>
+              <AgreeCheckInput type="checkbox" id="agree_receipt" name="agree_receipt" />
+              <AgreeLabel htmlFor="agree_receipt">전체선택</AgreeLabel>
+            </AgreeCheck>
             <ReferenDownload>다운로드</ReferenDownload>
           </ReferenceProcess>
           <SlideImgWrapper>
@@ -77,10 +80,10 @@ export default function IllegalPopupComponent() {
                     <StyledTableCell>총 결제 금액</StyledTableCell>
                     <StyledTableCell>1,600 원</StyledTableCell>
                   </StyledTableRow>
-                  {/* <TableRow>
+                  <TableRow>
                     <StyledTableCell style={{ fontWeight: 600 }}>처리자</StyledTableCell>
                     <StyledTableCell style={{ fontWeight: 600 }}>toy9900</StyledTableCell>
-                  </TableRow> */}
+                  </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>
@@ -216,7 +219,7 @@ const ImgH2 = styled.h2`
 `;
 
 const SlideImgWrapper = styled.div`
-  height: 80%;
+  height: 86%;
   overflow-y: scroll;
 `;
 
@@ -237,9 +240,34 @@ const ReferenceProcess = styled.div`
   height: 50px;
 `;
 
-const AgreeCheck = styled.div``;
+const AgreeCheck = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const ReferenDownload = styled.div``;
+
+const AgreeCheckInput = styled.input`
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #a0a0a0;
+  border-radius: 50%;
+  margin-right: 5px;
+  cursor: pointer;
+  &:checked {
+    background-color: ${props => props.theme.primaryColor};
+    border-color: transparent;
+    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' height='20' width='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'><polyline points='20 6 9 17 4 12'></polyline></svg>");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+  }
+`;
+
+const AgreeLabel = styled.label`
+  cursor: pointer;
+`;
 
 // Table
 const StyledTableCellHead = styled(TableCell)`

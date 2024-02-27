@@ -1,6 +1,6 @@
 import React from 'react';
-import IllegalComponent from '../../components/Time/Ilegal/IllegalComponent';
+import IllegalContainer from '../../container/Time/Illegal/IllegalContainer';
 
 export default function Illegal() {
-  return <IllegalComponent />;
+  return <IllegalContainer />;
 }
