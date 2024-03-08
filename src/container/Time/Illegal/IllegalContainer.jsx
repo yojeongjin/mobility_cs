@@ -5,6 +5,7 @@ import Main from '../../../components/Main/Main';
 import IllegalComponent from '../../../components/Time/Ilegal/IllegalComponent';
 
 export default function IllegalContainer() {
+  // popup 새창 열기
   const openPopup = () => {
     const url = 'http://localhost:3000/illegal/popup';
     const width = 1400;

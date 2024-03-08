@@ -1,14 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // material-ui
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 export default function IllegalPopupComponent() {
   return (
@@ -25,7 +18,7 @@ export default function IllegalPopupComponent() {
             <ReferenDownload>다운로드</ReferenDownload>
           </ReferenceProcess>
           <SlideImgWrapper>
-            <SlideImg src={`${process.env.PUBLIC_URL}/부정주차1.jpg`} alt="증빙사진" />
+            <SlideImg src={`${process.env.PUBLIC_URL}/영수증.png`} alt="증빙사진" />
             <SlideImg src={`${process.env.PUBLIC_URL}/부정주차2.jpg`} alt="증빙사진" />
             <SlideImg src={`${process.env.PUBLIC_URL}/부정주차3.jpg`} alt="증빙사진" />
           </SlideImgWrapper>

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Calendar from './Calendar';
+
 //icons
 import { IoSearchSharp, IoCalendarNumberOutline } from 'react-icons/io5';
 import { SiMicrosoftexcel } from 'react-icons/si';
@@ -14,7 +16,9 @@ export default function Search() {
           <IconDiv>
             <CalendarIcon />
           </IconDiv>
-          <CalendarDate>2024. 02. 26 - 2024. 02. 26</CalendarDate>
+          <CalendarDate>
+            <Calendar />
+          </CalendarDate>
         </SearchDate>
         <SearchInput>
           <Input />
@@ -39,6 +43,7 @@ const SearchContainer = styled.div`
 
 const SearchBox = styled.div`
   display: flex;
+  width: 50%;
 `;
 
 const SearchDate = styled.div`
@@ -46,8 +51,8 @@ const SearchDate = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding: 0 10px;
-  border: 1px solid #555;
+  padding: 0 12px;
+  border: 1px solid #c8c8c8;
   border-radius: 5px;
   cursor: pointer;
   color: #555;
@@ -60,7 +65,9 @@ const IconDiv = styled.div`
 `;
 const CalendarIcon = styled(IoCalendarNumberOutline)`
   font-size: 18px;
+  // color: #669900;
   color: #555;
+  // color: ${props => props.theme.primaryDark};
 `;
 
 const CalendarDate = styled.div`
@@ -77,19 +84,6 @@ const SearchInput = styled.div`
   margin-left: 15px;
 `;
 
-const Input = styled.input`
-  width: 150px;
-  height: 100%;
-  padding: 0 10px;
-  border: 1px solid #555;
-  border-radius: 5px;
-  transition: width 0.4s;
-  &:focus {
-    border: 1px solid #669900;
-    width: 250px;
-  }
-`;
-
 const SearchIcon = styled(IoSearchSharp)`
   position: absolute;
   top: 0;
@@ -97,14 +91,32 @@ const SearchIcon = styled(IoSearchSharp)`
   right: 10px;
   margin: auto;
   transition: 0.4s;
-  color: #757575;
+  // color: #669900;
+  color: #858585;
+`;
+
+const Input = styled.input`
+  width: 150px;
+  height: 100%;
+  padding: 0 10px;
+  border: 1px solid #c8c8c8;
+  border-radius: 5px;
+  transition: width 0.4s;
+  &:focus {
+    border: 1px solid #669900;
+    width: 250px;
+    ${SearchIcon} {
+      color: #669900;
+    }
+  }
 `;
 
 const DownloadBtn = styled.button`
   display: flex;
   align-items: center;
   padding: 12px;
-  color: #575757;
+  // color: #575757;
+  color: #757575;
   &:hover {
     color: ${props => props.theme.fontColor};
   }

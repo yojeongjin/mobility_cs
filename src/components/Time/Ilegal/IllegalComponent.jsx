@@ -1,16 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 // material-ui
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from '@material-ui/core';
-// icons
-import { SiMicrosoftexcel, SiResearchgate } from 'react-icons/si';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+
 import Pagination from '../../Pagination/Pagination';
 import Search from '../../Searchbox/Search';
 
@@ -25,9 +17,6 @@ export default function IllegalComponent(props) {
       {/* Table */}
       <TableBase>
         <Search />
-        {/* <DownloadBtn>
-          <DownloadIcon /> 엑셀 다운로드
-        </DownloadBtn> */}
         <StyledTableContainer>
           <Table size="small">
             {/* Table Head */}
@@ -105,23 +94,6 @@ const IllegalP = styled.p`
   color: #aaa;
   font-weight: 300;
   letter-spacing: -1px;
-`;
-
-const DownloadBtn = styled.button`
-  display: flex;
-  align-items: center;
-  float: right;
-  padding: 12px;
-  color: #797979;
-  &:hover {
-    color: ${props => props.theme.fontColor};
-  }
-`;
-
-const DownloadIcon = styled(SiMicrosoftexcel)`
-  font-size: 16px;
-  margin-right: 5px;
-  color: ${props => props.theme.primaryDark};
 `;
 
 const TableBase = styled.div`
