@@ -5,18 +5,18 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 
 import Pagination from '../../Pagination/Pagination';
 import Search from '../../Searchbox/Search';
+import Search1 from '../../Searchbox/Search1';
 
 export default function IllegalComponent(props) {
   const { openPopup } = props;
   return (
     <>
       <IllegalH1>부정주차 접수</IllegalH1>
-      <IllegalP>부정주차 설명 부정주차 설명 부정주차 설명 부정주차 설명</IllegalP>
       {/* 검색 */}
-
+      {/* <Search /> */}
+      <Search1 />
       {/* Table */}
       <TableBase>
-        <Search />
         <StyledTableContainer>
           <Table size="small">
             {/* Table Head */}
@@ -90,21 +90,21 @@ const IllegalH1 = styled.h1`
 
 const IllegalP = styled.p`
   padding: 10px 0;
-  margin-bottom: 50px;
+  // margin-bottom: 30px;
   color: #aaa;
   font-weight: 300;
   letter-spacing: -1px;
 `;
 
 const TableBase = styled.div`
-  min-height: 550px;
-  // border-bottom: 1px solid #f0f0f0;
+  min-height: 500px;
   // border: 1px solid purple;
 `;
 
 const StyledTableContainer = styled(TableContainer)`
-  max-height: 500px;
-  border-top: 1.5px solid black;
+  max-height: 450px;
+  // border-top: 1px solid black;
+  border-top: 1.5px solid #c8c8c8;
   padding: 3px 0;
 `;
 
@@ -112,6 +112,8 @@ const StyledTableCellHead = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
     font-weight: 400;
+    background: #fbfbfb;
+
     border-bottom: 1px solid #ddd;
     color: #555;
     // text-align: center;

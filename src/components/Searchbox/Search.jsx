@@ -21,14 +21,15 @@ export default function Search() {
           </CalendarDate>
         </SearchDate>
         <SearchInput>
-          <Input />
           <SearchIcon />
+          <Input placeholder="차량번호 입력" />
         </SearchInput>
+        <SearchButton>검색</SearchButton>
       </SearchBox>
 
-      <DownloadBtn>
+      {/* <DownloadBtn>
         <DownloadIcon /> 엑셀 다운로드
-      </DownloadBtn>
+      </DownloadBtn> */}
     </SearchContainer>
   );
 }
@@ -36,14 +37,12 @@ export default function Search() {
 const SearchContainer = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-between;
   height: 38px;
-  margin: 0 0 8px;
+  margin: 0 0 20px;
 `;
 
 const SearchBox = styled.div`
   display: flex;
-  width: 50%;
 `;
 
 const SearchDate = styled.div`
@@ -81,34 +80,35 @@ const CalendarDate = styled.div`
 const SearchInput = styled.div`
   position: relative;
   height: 100%;
-  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+  padding: 0 10px;
+  border: 1px solid #c8c8c8;
+  border-radius: 5px;
 `;
 
 const SearchIcon = styled(IoSearchSharp)`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 10px;
-  margin: auto;
-  transition: 0.4s;
-  // color: #669900;
   color: #858585;
 `;
 
 const Input = styled.input`
   width: 150px;
   height: 100%;
+  margin-left: 10px;
   padding: 0 10px;
-  border: 1px solid #c8c8c8;
-  border-radius: 5px;
+  // border-left: 1px solid #c8c8c8;
   transition: width 0.4s;
   &:focus {
     border: 1px solid #669900;
     width: 250px;
-    ${SearchIcon} {
-      color: #669900;
-    }
   }
+`;
+
+const SearchButton = styled.button`
+  border: 1px solid #c8c8c8;
+  border-radius: 5px;
+  padding: 10px;
 `;
 
 const DownloadBtn = styled.button`

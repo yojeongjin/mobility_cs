@@ -1,6 +1,5 @@
 import React, { useState, forwardRef } from 'react';
 import styled from 'styled-components';
-
 // dayjs
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
@@ -9,6 +8,9 @@ import 'dayjs/locale/ko';
 import ReactDatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import 'react-datepicker/dist/react-datepicker.css';
+
+// icons
+import { IoCalendarClearOutline } from 'react-icons/io5';
 
 export default function Calendar() {
   const [startDate, setStartDate] = useState(new Date());
@@ -22,6 +24,9 @@ export default function Calendar() {
 
   return (
     <CalendarContainer>
+      <CalendarIcon>
+        <Icon />
+      </CalendarIcon>
       <ReactDatePicker
         dateFormat="yyyy. MM. dd"
         locale={ko} // 한국말
@@ -33,13 +38,14 @@ export default function Calendar() {
         onChange={date => setStartDate(date)}
         disabledKeyboardNavigation
       />
-      -
+      −
       <ReactDatePicker
         dateFormat="yyyy. MM. dd"
         locale={ko} // 한국말
         selected={endDate}
         startDate={startDate}
         endDate={endDate}
+        minDate={startDate}
         maxDate={new Date()}
         customInput={<ExampleCustomInput />}
         onChange={date => setEndDate(date)}
@@ -51,14 +57,22 @@ export default function Calendar() {
 
 const CalendarContainer = styled.div`
   font-family: 'Pretendard';
-  font-size: 18px;
+  height: 35px;
   display: flex;
   align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 0 10px;
+  color: #555;
   .example-custom-input {
     font-family: 'Pretendard';
-    height: 38px;
+    height: 35px;
+    padding: 0 10px;
     color: #555;
-    font-weight: 300;
+    &:hover {
+      color: ${props => props.theme.secondaryColor};
+      font-weight: 500;
+    }
   }
   .react-datepicker {
     font-family: 'Pretendard';
@@ -202,4 +216,15 @@ const CalendarContainer = styled.div`
   .react-datepicker__day--disabled:hover {
     background: transparent;
   }
+`;
+
+const CalendarIcon = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled(IoCalendarClearOutline)`
+  color: #555;
+  font-size: 15px;
 `;
