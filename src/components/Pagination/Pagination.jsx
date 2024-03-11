@@ -11,14 +11,6 @@ export default function Pagination() {
         </PaginationItem>
         <PaginationItem>1</PaginationItem>
         <PaginationItem>2</PaginationItem>
-        <PaginationItem>3</PaginationItem>
-        <PaginationItem>4</PaginationItem>
-        <PaginationItem>5</PaginationItem>
-        <PaginationItem>6</PaginationItem>
-        <PaginationItem>7</PaginationItem>
-        <PaginationItem>8</PaginationItem>
-        <PaginationItem>9</PaginationItem>
-        <PaginationItem>10</PaginationItem>
         <PaginationItem>
           <PaginationLink>다음</PaginationLink>
         </PaginationItem>
@@ -29,7 +21,7 @@ export default function Pagination() {
 
 const PaginationBase = styled.div`
   // border: 1px solid black;
-  margin: 30px 0 0;
+  margin: 50px 0 0;
   padding: 8px 0;
 `;
 

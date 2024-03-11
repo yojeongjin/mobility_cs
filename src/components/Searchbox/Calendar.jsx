@@ -13,8 +13,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { IoCalendarClearOutline } from 'react-icons/io5';
 
 export default function Calendar() {
+  const today = new Date();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+
+  const Dates = ['오늘', '15일', '1개월'];
 
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button className="example-custom-input" onClick={onClick} ref={ref}>
@@ -22,40 +25,75 @@ export default function Calendar() {
     </button>
   ));
 
+  const ChangeDate = e => {
+    const text = e.currentTarget.innerText;
+
+    if (text === '오늘') {
+      setStartDate(new Date());
+      setEndDate(new Date());
+    } else if (text === '15일') {
+      setStartDate(new Date(today.getFullYear(), today.getMonth(), today.getDate() - 15));
+      setEndDate(new Date());
+    } else if (text === '1개월') {
+      setStartDate(new Date(today.getFullYear(), today.getMonth(), today.getDate() - 30));
+      setEndDate(new Date());
+    }
+  };
+
   return (
     <CalendarContainer>
-      <CalendarIcon>
-        <Icon />
-      </CalendarIcon>
-      <ReactDatePicker
-        dateFormat="yyyy. MM. dd"
-        locale={ko} // 한국말
-        selected={startDate}
-        startDate={startDate}
-        endDate={endDate}
-        maxDate={new Date()}
-        customInput={<ExampleCustomInput />}
-        onChange={date => setStartDate(date)}
-        disabledKeyboardNavigation
-      />
-      −
-      <ReactDatePicker
-        dateFormat="yyyy. MM. dd"
-        locale={ko} // 한국말
-        selected={endDate}
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
-        maxDate={new Date()}
-        customInput={<ExampleCustomInput />}
-        onChange={date => setEndDate(date)}
-        disabledKeyboardNavigation
-      />
+      <CalendarBox>
+        <CalendarIcon>
+          <Icon />
+        </CalendarIcon>
+        <ReactDatePicker
+          dateFormat="yyyy. MM. dd"
+          locale={ko} // 한국말
+          selected={startDate}
+          startDate={startDate}
+          endDate={endDate}
+          maxDate={new Date()}
+          customInput={<ExampleCustomInput />}
+          onChange={date => setStartDate(date)}
+          disabledKeyboardNavigation
+        />
+        −
+        <ReactDatePicker
+          dateFormat="yyyy. MM. dd"
+          locale={ko} // 한국말
+          selected={endDate}
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
+          maxDate={new Date()}
+          customInput={<ExampleCustomInput />}
+          onChange={date => setEndDate(date)}
+          disabledKeyboardNavigation
+        />
+      </CalendarBox>
+
+      <DateButtonWrapper>
+        {Dates.map(Date => {
+          return (
+            <DateButton
+              onClick={e => {
+                ChangeDate(e);
+              }}
+            >
+              {Date}
+            </DateButton>
+          );
+        })}
+      </DateButtonWrapper>
     </CalendarContainer>
   );
 }
 
 const CalendarContainer = styled.div`
+  display: flex;
+`;
+
+const CalendarBox = styled.div`
   font-family: 'Pretendard';
   height: 35px;
   display: flex;
@@ -70,18 +108,20 @@ const CalendarContainer = styled.div`
     padding: 0 10px;
     color: #555;
     &:hover {
-      color: ${props => props.theme.secondaryColor};
-      font-weight: 500;
+      color: black;
     }
   }
   .react-datepicker {
     font-family: 'Pretendard';
-    transform: translate(35px, -5px);
+    transform: translate(42px, 0px);
     will-change: transform;
-    // border: 1px solid black;
+    border: 1px solid #e0e0e0;
   }
-  .react-datepicker__triangle {
-    display: none;
+  .react-datepicker-popper .react-datepicker__triangle {
+    // display: none;
+    fill: #fff;
+    color: transparent;
+    stroke: #e0e0e0;
   }
   .react-datepicker__header {
     background: transparent;
@@ -143,18 +183,13 @@ const CalendarContainer = styled.div`
     border-radius: 50%;
     font-weight: 500;
   }
+  .react-datepicker__day--disabled {
+    text-decoration: line-through;
+  }
   .react-datepicker__day--outside-month {
     color: #c8c8c8;
   }
   .react-datepicker__day--selected {
-    // &.react-datepicker__day--in-range {
-    //   &.react-datepicker__day--range-start,
-    //   &.react-datepicker__day--range-end {
-    //     &:before {
-    //       display: none;
-    //     }
-    //   }
-    // }
   }
   .react-datepicker__day--selected:hover {
   }
@@ -227,4 +262,26 @@ const CalendarIcon = styled.div`
 const Icon = styled(IoCalendarClearOutline)`
   color: #555;
   font-size: 15px;
+`;
+
+const DateButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+`;
+
+const DateButton = styled.button`
+  border-right: 1px solid #e0e0e0;
+  padding: 10px 17px;
+  color: #555;
+  font-weight: 300;
+  &:last-child {
+    border-right: none;
+  }
+  &:hover {
+    color: ${props => props.theme.secondaryColor};
+    font-weight: 500;
+  }
 `;

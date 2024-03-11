@@ -5,7 +5,6 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 
 import Pagination from '../../Pagination/Pagination';
 import Search from '../../Searchbox/Search';
-import Search1 from '../../Searchbox/Search1';
 
 export default function IllegalComponent(props) {
   const { openPopup } = props;
@@ -14,7 +13,7 @@ export default function IllegalComponent(props) {
       <IllegalH1>부정주차 접수</IllegalH1>
       {/* 검색 */}
       {/* <Search /> */}
-      <Search1 />
+      <Search />
       {/* Table */}
       <TableBase>
         <StyledTableContainer>
@@ -85,25 +84,14 @@ const IllegalH1 = styled.h1`
   font-size: 25px;
   font-weight: 500;
   color: #333;
-  letter-spacing: -0.5px;
-`;
-
-const IllegalP = styled.p`
-  padding: 10px 0;
-  // margin-bottom: 30px;
-  color: #aaa;
-  font-weight: 300;
-  letter-spacing: -1px;
 `;
 
 const TableBase = styled.div`
   min-height: 500px;
-  // border: 1px solid purple;
 `;
 
 const StyledTableContainer = styled(TableContainer)`
   max-height: 450px;
-  // border-top: 1px solid black;
   border-top: 1.5px solid #c8c8c8;
   padding: 3px 0;
 `;
@@ -113,10 +101,8 @@ const StyledTableCellHead = styled(TableCell)`
     font-family: 'Pretendard', sans-serif;
     font-weight: 400;
     background: #fbfbfb;
-
     border-bottom: 1px solid #ddd;
     color: #555;
-    // text-align: center;
     letter-spacing: -1px;
   }
 `;
@@ -124,7 +110,6 @@ const StyledTableCellHead = styled(TableCell)`
 const StyledTableCell = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
-    // text-align: center;
     height: 40px;
   }
   &:hover {
@@ -133,7 +118,6 @@ const StyledTableCell = styled(TableCell)`
 `;
 
 export const Select = styled.select`
-  // width: 100px;
   height: 30px;
   padding: 0 9px;
   letter-spacing: -0.5px;
