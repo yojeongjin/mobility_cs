@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 // material-ui
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 export default function IllegalPopupComponent() {
+  const params = useParams();
+  console.log(params);
   return (
     <IllegalPopup>
       <PopupContainer>

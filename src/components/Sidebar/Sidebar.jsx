@@ -7,8 +7,10 @@ import { VscSignOut } from 'react-icons/vsc';
 
 export default function Sidebar() {
   const location = useLocation();
-  if (window.location.pathname === '/illegal/popup') return null;
-  if (window.location.pathname === '/signin') return null;
+  const params = location.pathname.split('/')[3];
+
+  if (location.pathname === '/signin') return null;
+  if (location.pathname === `/illegal/popup/${params}`) return null;
 
   return (
     <SidebarBase>

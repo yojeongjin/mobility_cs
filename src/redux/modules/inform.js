@@ -3,7 +3,7 @@ import { createActions, handleActions } from 'redux-actions';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
 const initialState = {
-  informs: null,
+  inform: [],
   loading: false,
   error: null,
 };
@@ -21,12 +21,12 @@ const reducer = handleActions(
     }),
     SUCCESS: (state, action) => ({
       ...state,
-      informs: action.payload,
+      inform: action.payload,
       loading: false,
       error: null,
     }),
     FAIL: (state, action) => ({
-      ...state,
+      inform: [],
       loading: false,
       error: action.payload,
     }),
@@ -38,21 +38,27 @@ const reducer = handleActions(
 export default reducer;
 
 // saga
-
 export const { getInform } = createActions('GET_INFORM', { prefix });
 
 export function* informSaga() {
   yield takeEvery(`${prefix}/GET_INFORM`, getInformSaga);
 }
 
-async function getInfomAPI(reqData) {
-  return await axios.post('http://223.130.140.159:1880/chatbot/readRequest', reqData);
+async function getInformAPI(reqData) {
+  const res = await axios.post('http://223.130.140.159:1880/chatbot/readRequest', reqData);
+
+  return res.data;
 }
 
 function* getInformSaga(action) {
   try {
     yield put(pending());
-    yield call(getInfomAPI, action.payload);
+    const info = yield call(getInformAPI, action.payload);
+    if (info.result === 'PF_200') {
+      yield put(success(info.data));
+    } else {
+      yield put(fail('환불조회건이 없습니다.'));
+    }
   } catch (error) {
     yield put(fail('UNKNOWN_ERROR'));
   }

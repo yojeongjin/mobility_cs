@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import Calendar from './Calendar';
 
+// icon
 import { IoSearchSharp } from 'react-icons/io5';
 
 export default function Search() {
@@ -19,9 +21,6 @@ export default function Search() {
           <SearchBtn>검색</SearchBtn>
         </SearchInput>
       </SearchBox>
-      {/* <SearchBtnWrapper>
-        <SearchBtn>검색</SearchBtn>
-      </SearchBtnWrapper> */}
     </SearchContainer>
   );
 }
@@ -29,7 +28,7 @@ export default function Search() {
 const SearchContainer = styled.div`
   position: relative;
   display: flex;
-  margin: 50px 0 20px;
+  margin: 50px 0 30px;
 `;
 
 const SearchBox = styled.div`

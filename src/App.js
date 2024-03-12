@@ -19,7 +19,7 @@ function App() {
         <GlobalStyles />
         <Sidebar />
         <Routes>
-          <Route path="/illegal/popup" element={<IllegalPopup />} />
+          <Route path="/illegal/popup/:idx" element={<IllegalPopup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/" element={<Illegal />} />
         </Routes>

@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
 // material-ui
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
+// components
 import Pagination from '../../Pagination/Pagination';
 import Search from '../../Searchbox/Search';
 
 export default function IllegalComponent(props) {
-  const { openPopup } = props;
+  const { openPopup, inform } = props;
+
   return (
     <>
       <IllegalH1>부정주차 접수</IllegalH1>
@@ -30,48 +33,43 @@ export default function IllegalComponent(props) {
               </TableRow>
             </TableHead>
             {/* Table Body */}
-            <TableBody>
-              <TableRow
-                onClick={() => {
-                  openPopup();
-                }}
-              >
-                <StyledTableCell>3</StyledTableCell>
-                <StyledTableCell>결제하면 안되는 테스트 주차장</StyledTableCell>
-                <StyledTableCell>서울13마1234</StyledTableCell>
-                <StyledTableCell>2024년 02월 06일 (화) 11:40</StyledTableCell>
-                <StyledTableCell>미제출</StyledTableCell>
-                <StyledTableCell>
-                  <ParkingState>환불대기</ParkingState>
-                </StyledTableCell>
-              </TableRow>
-              <TableRow
-                onClick={() => {
-                  openPopup();
-                }}
-              >
-                <StyledTableCell>2</StyledTableCell>
-                <StyledTableCell>파프테스트 주차장</StyledTableCell>
-                <StyledTableCell>123가1234</StyledTableCell>
-                <StyledTableCell>2024년 02월 06일 (화) 11:40</StyledTableCell>
-                <StyledTableCell>제출</StyledTableCell>
-
-                <StyledTableCell>
-                  <ParkingState>환불대기</ParkingState>
-                </StyledTableCell>
-              </TableRow>
-              <TableRow>
-                <StyledTableCell>1</StyledTableCell>
-                <StyledTableCell>테스트로 이용불가 주차장</StyledTableCell>
-                <StyledTableCell>123가1234</StyledTableCell>
-                <StyledTableCell>2024년 01월 29일 (금) 23:21</StyledTableCell>
-                <StyledTableCell>만료</StyledTableCell>
-
-                <StyledTableCell>
-                  <State>환불완료</State>
-                </StyledTableCell>
-              </TableRow>
-            </TableBody>
+            {inform.length === 0 ? (
+              <TableBody>
+                <TableRow>
+                  <StyledTableCell colSpan={6}>환불조회건이 없습니다.</StyledTableCell>
+                </TableRow>
+              </TableBody>
+            ) : (
+              <TableBody>
+                {inform.map((info, idx) => {
+                  return (
+                    <TableRow
+                      key={info.id}
+                      onClick={() => {
+                        openPopup(info.id);
+                      }}
+                    >
+                      <StyledTableCell>{inform.length - idx}</StyledTableCell>
+                      <StyledTableCell>{info.parkinglot_name}</StyledTableCell>
+                      <StyledTableCell>{info.car_number}</StyledTableCell>
+                      <StyledTableCell>
+                        {dayjs(info.created_at).format('YYYY년 MM월 DD일 HH:mm')}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        {info.refund_data_uri === '' ? '미제출' : '제출'}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        {info.order_state === 'REFUNDED' ? (
+                          <State isRefunded={info.order_state === 'REFUNDED'}>완료</State>
+                        ) : (
+                          <State isRefunded={info.order_state === 'REFUNDED'}>대기</State>
+                        )}
+                      </StyledTableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            )}
           </Table>
         </StyledTableContainer>
       </TableBase>
@@ -142,17 +140,17 @@ export const ApplyBtn = styled.button`
 const ParkingState = styled.div`
   background-color: #ff7761;
   border-radius: 20px;
-  width: 70px;
+  width: 60px;
   text-align: center;
   padding: 4px 0;
   color: #fff;
 `;
 
 const State = styled.div`
-  background-color: #dae9f4;
+  background-color: ${props => (props.isRefunded ? '#dae9f4' : '#ff7761')};
   border-radius: 20px;
-  width: 70px;
+  width: 60px;
   text-align: center;
   padding: 5px 0;
-  color: #333;
+  color: ${props => (props.isRefunded ? '#333' : '#fff')};
 `;

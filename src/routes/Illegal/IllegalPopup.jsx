@@ -1,6 +1,6 @@
 import React from 'react';
-import IllegalPopupComponent from '../../components/Time/Ilegal/IllegalPopupComponent';
+import IllegalPopupContainer from '../../container/Time/Illegal/IllegalPopupContainer';
 
 export default function IllegalPopup() {
-  return <IllegalPopupComponent />;
+  return <IllegalPopupContainer />;
 }
