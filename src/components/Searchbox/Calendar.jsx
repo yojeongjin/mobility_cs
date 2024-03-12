@@ -1,5 +1,9 @@
 import React, { useState, forwardRef } from 'react';
 import styled from 'styled-components';
+
+//redux
+import { useDispatch, useSelector } from 'react-redux';
+import { setStart, setEnd } from '../../redux/modules/search';
 // dayjs
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
@@ -13,10 +17,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { IoCalendarClearOutline } from 'react-icons/io5';
 
 export default function Calendar() {
-  const today = new Date();
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  // dispatch
+  const dispatch = useDispatch();
+  const startDate = useSelector(state => state.search.startDate);
+  const endDate = useSelector(state => state.search.endDate);
 
+  const today = new Date();
   const Dates = ['오늘', '15일', '1개월'];
 
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -29,14 +35,14 @@ export default function Calendar() {
     const text = e.currentTarget.innerText;
 
     if (text === '오늘') {
-      setStartDate(new Date());
-      setEndDate(new Date());
+      dispatch(setStart(new Date()));
+      dispatch(setEnd(new Date()));
     } else if (text === '15일') {
-      setStartDate(new Date(today.getFullYear(), today.getMonth(), today.getDate() - 15));
-      setEndDate(new Date());
+      dispatch(setStart(new Date(today.getFullYear(), today.getMonth(), today.getDate() - 15)));
+      dispatch(setEnd(new Date()));
     } else if (text === '1개월') {
-      setStartDate(new Date(today.getFullYear(), today.getMonth(), today.getDate() - 30));
-      setEndDate(new Date());
+      dispatch(setStart(new Date(today.getFullYear(), today.getMonth(), today.getDate() - 30)));
+      dispatch(setEnd(new Date()));
     }
   };
 
@@ -54,7 +60,7 @@ export default function Calendar() {
           endDate={endDate}
           maxDate={new Date()}
           customInput={<ExampleCustomInput />}
-          onChange={date => setStartDate(date)}
+          onChange={date => dispatch(setStart(date))}
           disabledKeyboardNavigation
         />
         −
@@ -67,7 +73,7 @@ export default function Calendar() {
           minDate={startDate}
           maxDate={new Date()}
           customInput={<ExampleCustomInput />}
-          onChange={date => setEndDate(date)}
+          onChange={date => dispatch(setEnd(date))}
           disabledKeyboardNavigation
         />
       </CalendarBox>
@@ -108,7 +114,8 @@ const CalendarBox = styled.div`
     padding: 0 10px;
     color: #555;
     &:hover {
-      color: black;
+      // color: #669900;
+      color: ${props => props.theme.primaryDark};
     }
   }
   .react-datepicker {
@@ -281,7 +288,8 @@ const DateButton = styled.button`
     border-right: none;
   }
   &:hover {
-    color: ${props => props.theme.secondaryColor};
+    color: ${props => props.theme.primaryDark};
+    // color: #669900;
     font-weight: 500;
   }
 `;

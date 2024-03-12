@@ -1,17 +1,21 @@
 import { combineReducers } from 'redux';
-import inform from './inform';
 
 //redux-persist
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import sessionStorage from 'redux-persist/es/storage/session';
+
+// reducers
+import inform from './inform';
+import search from './search';
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: sessionStorage,
 };
 
 const reducer = combineReducers({
   inform,
+  search,
 });
 
 export default persistReducer(persistConfig, reducer);

@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 
 // components
 import Pagination from '../../Pagination/Pagination';
-import Search from '../../Searchbox/Search';
+import SearchContainer from '../../../container/Searchbox/SearchContainer';
 
 export default function IllegalComponent(props) {
   const { openPopup, inform } = props;
@@ -16,7 +16,7 @@ export default function IllegalComponent(props) {
       <IllegalH1>부정주차 접수</IllegalH1>
       {/* 검색 */}
       {/* <Search /> */}
-      <Search />
+      <SearchContainer />
       {/* Table */}
       <TableBase>
         <StyledTableContainer>
@@ -91,6 +91,7 @@ const TableBase = styled.div`
 const StyledTableContainer = styled(TableContainer)`
   max-height: 450px;
   border-top: 1.5px solid #c8c8c8;
+  // border-top: 1.5px solid black;
   padding: 3px 0;
 `;
 
@@ -115,16 +116,6 @@ const StyledTableCell = styled(TableCell)`
   }
 `;
 
-export const Select = styled.select`
-  height: 30px;
-  padding: 0 9px;
-  letter-spacing: -0.5px;
-  border: 1px solid #ddd;
-  color: #555;
-`;
-
-export const Option = styled.option``;
-
 export const ApplyBtn = styled.button`
   width: 50px;
   height: 30px;
@@ -137,19 +128,10 @@ export const ApplyBtn = styled.button`
   }
 `;
 
-const ParkingState = styled.div`
-  background-color: #ff7761;
-  border-radius: 20px;
-  width: 60px;
-  text-align: center;
-  padding: 4px 0;
-  color: #fff;
-`;
-
 const State = styled.div`
   background-color: ${props => (props.isRefunded ? '#dae9f4' : '#ff7761')};
   border-radius: 20px;
-  width: 60px;
+  width: 55px;
   text-align: center;
   padding: 5px 0;
   color: ${props => (props.isRefunded ? '#333' : '#fff')};

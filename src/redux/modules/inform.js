@@ -46,7 +46,7 @@ export function* informSaga() {
 
 async function getInformAPI(reqData) {
   const res = await axios.post('http://223.130.140.159:1880/chatbot/readRequest', reqData);
-
+  console.log(res.data);
   return res.data;
 }
 

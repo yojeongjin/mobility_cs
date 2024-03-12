@@ -1,24 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Calendar from './Calendar';
-
+// components
+import CalendarContainer from '../../container/Searchbox/CalendarContainer';
 // icon
 import { IoSearchSharp } from 'react-icons/io5';
 
-export default function Search() {
+export default function Search(props) {
+  const { carNumRef, searchInfo, handleOnKeyPress } = props;
+
   return (
     <SearchContainer>
       <SearchBox>
-        <Calendar />
+        <CalendarContainer />
       </SearchBox>
       <SearchBox>
         <SearchInput>
           <InputLabel htmlFor="searchInput">
             <SearchIcon />
           </InputLabel>
-          <Input id="searchInput" />
-          <SearchBtn>검색</SearchBtn>
+          <Input id="searchInput" ref={carNumRef} onKeyDown={handleOnKeyPress} />
+          <SearchBtn
+            onClick={() => {
+              searchInfo();
+            }}
+          >
+            검색
+          </SearchBtn>
         </SearchInput>
       </SearchBox>
     </SearchContainer>
@@ -60,16 +68,20 @@ const Input = styled.input`
   height: 100%;
   margin-left: 10px;
   transition: width 0.4s;
-  &:focus {
-    // border: 1px solid #669900;
-    width: 250px;
-  }
+  // &:focus {
+  //   // border: 1px solid #669900;
+  //   width: 250px;
+  // }
 `;
 
 const SearchBtn = styled.button`
+  // background-color: ${props => props.theme.primaryColor};
   background-color: ${props => props.theme.secondaryColor};
-  height: 100%;
+  height: 105%;
   color: #fff;
   padding: 0 15px;
   border-radius: 0 5px 5px 0;
+  &:hover {
+    background-color: ${props => props.theme.primaryColor};
+  }
 `;
