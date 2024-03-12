@@ -1,19 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-export default function Pagination() {
+export default function Pagination(props) {
+  const { btnRange, startPage, currentSet, page, setPage, endPage, totalSet } = props;
+
   return (
     <PaginationBase>
       <PaginationMenu>
-        <PaginationItem>
-          <PaginationLink>이전</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>1</PaginationItem>
-        <PaginationItem>2</PaginationItem>
-        <PaginationItem>
-          <PaginationLink>다음</PaginationLink>
-        </PaginationItem>
+        {currentSet !== undefined && currentSet > 1 && <PaginationItem>이전</PaginationItem>}
+        {btnRange !== undefined &&
+          Array(btnRange)
+            .fill(startPage)
+            .map((_, i) => (
+              <PaginationItem
+                isActive={page === startPage + i}
+                onClick={() => setPage(startPage + i)}
+              >
+                {startPage + i}
+              </PaginationItem>
+            ))}
       </PaginationMenu>
     </PaginationBase>
   );
@@ -39,40 +44,13 @@ const PaginationItem = styled.li`
   height: 30px;
   margin-right: 10px;
   cursor: pointer;
-  &:first-child {
-    &::before {
-      content: '＜';
-      margin-right: 8px;
-    }
-  }
-  &:last-child {
-    &::after {
-      content: '＞';
-      margin-left: 8px;
-    }
-    margin-right: 0;
-  }
-  &:first-child,
-  &:last-child {
-    width: 50px;
-    font-size: 15px;
-    &:hover {
-      border: none;
-      background: none;
-      color: ${props => props.theme.fontColor};
-    }
-  }
+  background: ${props => (props.isActive ? '#25d663' : 'none')};
+  border-radius: ${props => (props.isActive ? '50%' : '0')};
+  color: ${props => (props.isActive ? '#fff' : '#252525')};
+
   &:hover {
-    background: ${props => props.theme.primaryColor};
-    // background: #669900;
-    // background: ${props => props.theme.primaryDark};
+    background: ${props => props.theme.secondaryColor};
     color: #fff;
     border-radius: 50%;
-  }
-`;
-
-const PaginationLink = styled(Link)`
-  &:hover {
-    text-decoration: underline;
   }
 `;

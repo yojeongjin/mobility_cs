@@ -5,17 +5,16 @@ import dayjs from 'dayjs';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 // components
-import Pagination from '../../Pagination/Pagination';
 import SearchContainer from '../../../container/Searchbox/SearchContainer';
 
 export default function IllegalComponent(props) {
-  const { openPopup, inform } = props;
+  const { openPopup, inform, startPost, endPost } = props;
 
+  console.log(startPost);
   return (
     <>
       <IllegalH1>부정주차 접수</IllegalH1>
       {/* 검색 */}
-      {/* <Search /> */}
       <SearchContainer />
       {/* Table */}
       <TableBase>
@@ -41,7 +40,7 @@ export default function IllegalComponent(props) {
               </TableBody>
             ) : (
               <TableBody>
-                {inform.map((info, idx) => {
+                {inform.slice(startPost - 1, endPost).map((info, idx) => {
                   return (
                     <TableRow
                       key={info.id}
@@ -73,7 +72,7 @@ export default function IllegalComponent(props) {
           </Table>
         </StyledTableContainer>
       </TableBase>
-      <Pagination />
+      {/* <Pagination /> */}
     </>
   );
 }

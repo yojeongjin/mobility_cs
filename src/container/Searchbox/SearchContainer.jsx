@@ -1,9 +1,10 @@
 import React, { useCallback, useRef } from 'react';
 import dayjs from 'dayjs';
-// components
-import Search from '../../components/Searchbox/Search';
+// redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getInform } from '../../redux/modules/inform';
+// components
+import Search from '../../components/Searchbox/Search';
 
 export default function SearchContainer() {
   const dispatch = useDispatch();
