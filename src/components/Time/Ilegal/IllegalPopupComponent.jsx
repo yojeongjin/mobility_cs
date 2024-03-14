@@ -1,128 +1,188 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 // material-ui
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+// icon
+import { IoCloudDownloadOutline } from 'react-icons/io5';
 
-export default function IllegalPopupComponent() {
-  const params = useParams();
-  console.log(params);
+export default function IllegalPopupComponent(props) {
+  const { popupState, imgUrlArr } = props;
+  const [checkItems, setCheckItems] = useState([]);
+
+  const checkHandled = e => {
+    checkItemHandler(e.target.id, e.target.checked);
+  };
+
+  const checkItemHandler = (id, isChecked) => {
+    if (isChecked) {
+      setCheckItems(prev => [...prev, id]);
+    } else {
+      setCheckItems(checkItems.filter(item => item !== id));
+    }
+  };
+
+  const allCheckedHandler = e => {
+    if (e.target.checked) {
+      setCheckItems(imgUrlArr.map((url, idx) => `${idx}`));
+    } else {
+      setCheckItems([]);
+    }
+  };
+
   return (
     <IllegalPopup>
-      <PopupContainer>
-        {/* 증빙서류 */}
-        <ReferenceImg>
-          <ImgH2>증빙 서류</ImgH2>
-          <ReferenceProcess>
-            <AgreeCheck>
-              <AgreeCheckInput type="checkbox" id="agree_receipt" name="agree_receipt" />
-              <AgreeLabel htmlFor="agree_receipt">전체선택</AgreeLabel>
-            </AgreeCheck>
-            <ReferenDownload>다운로드</ReferenDownload>
-          </ReferenceProcess>
-          <SlideImgWrapper>
-            <SlideImg src={`${process.env.PUBLIC_URL}/영수증.png`} alt="증빙사진" />
-            <SlideImg src={`${process.env.PUBLIC_URL}/부정주차2.jpg`} alt="증빙사진" />
-            <SlideImg src={`${process.env.PUBLIC_URL}/부정주차3.jpg`} alt="증빙사진" />
-          </SlideImgWrapper>
-        </ReferenceImg>
-        <PopupContents>
-          {/* 예약 내역 */}
-          <ContentsTable>
-            <TableContainer>
-              <Table size="small">
-                {/* Table Head */}
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCellHead>분류</StyledTableCellHead>
-                    <StyledTableCellHead>내용</StyledTableCellHead>
-                  </TableRow>
-                </TableHead>
-                {/* Table Body */}
-                <TableBody>
-                  <StyledTableRow>
-                    <StyledTableCell>현장명</StyledTableCell>
-                    <StyledTableCell>테스트로 이용불가 주차장</StyledTableCell>
-                  </StyledTableRow>
-                  <TableRow>
-                    <StyledTableCell>차량번호</StyledTableCell>
-                    <StyledTableCell>서울13마1234</StyledTableCell>
-                  </TableRow>
-                  <StyledTableRow>
-                    <StyledTableCell>이용상품권</StyledTableCell>
-                    <StyledTableCell>휴일당일권(토요일)</StyledTableCell>
-                  </StyledTableRow>
-                  <TableRow>
-                    <StyledTableCell>예약 이용 일시</StyledTableCell>
-                    <StyledTableCell>2024-12-15 (목) 11:50 ~ 13:50</StyledTableCell>
-                  </TableRow>
-                  <StyledTableRow>
-                    <StyledTableCell>취소 사유</StyledTableCell>
-                    <StyledTableCell>부정주차</StyledTableCell>
-                  </StyledTableRow>
-                  <TableRow>
-                    <StyledTableCell>결제 일자</StyledTableCell>
-                    <StyledTableCell>2024-12-15 11:14:33</StyledTableCell>
-                  </TableRow>
-                  <StyledTableRow>
-                    <StyledTableCell>결제 금액</StyledTableCell>
-                    <StyledTableCell>500 원</StyledTableCell>
-                  </StyledTableRow>
-                  <TableRow>
-                    <StyledTableCell>결제 포인트</StyledTableCell>
-                    <StyledTableCell>1,100 포인트</StyledTableCell>
-                  </TableRow>
-                  <StyledTableRow>
-                    <StyledTableCell>총 결제 금액</StyledTableCell>
-                    <StyledTableCell>1,600 원</StyledTableCell>
-                  </StyledTableRow>
-                  <TableRow>
-                    <StyledTableCell style={{ fontWeight: 600 }}>처리자</StyledTableCell>
-                    <StyledTableCell style={{ fontWeight: 600 }}>toy9900</StyledTableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </ContentsTable>
-          {/* 환불 */}
-          <RefundTable>
-            <TableContainer>
-              <Table size="small">
-                {/* Table Head */}
-                <TableHead>
-                  <TableRow>
-                    <RefundTableHead>환불 금액</RefundTableHead>
-                    <RefundTableHead>환불 포인트</RefundTableHead>
-                    <RefundTableHead>환불 비율</RefundTableHead>
-                  </TableRow>
-                </TableHead>
-                {/* Table Body */}
-                <TableBody>
-                  <TableRow>
-                    <RefundTableCell>500 원</RefundTableCell>
-                    <RefundTableCell>1,100 포인트</RefundTableCell>
-                    <RefundTableCell>
-                      <Select>
-                        <Option>100%</Option>
-                        <Option>80%</Option>
-                      </Select>
-                    </RefundTableCell>
-                  </TableRow>
-                  <TableRow>
-                    <RefundTableCell colSpan={3}>
-                      <RemarkLabel>비고</RemarkLabel>
-                      <RemarkInput />
-                    </RefundTableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </RefundTable>
-          <BtnDiv>
-            <RefundBtn>환불하기</RefundBtn>
-          </BtnDiv>
-        </PopupContents>
-      </PopupContainer>
+      {popupState && imgUrlArr && (
+        <PopupContainer>
+          {/* 증빙서류 */}
+          {imgUrlArr.length !== 0 ? (
+            <ReferenceImg>
+              <ImgH2>증빙 서류</ImgH2>
+              <ReferenceProcess>
+                <AgreeCheck>
+                  <AgreeCheckInput
+                    id="checkAll"
+                    type="checkbox"
+                    onChange={allCheckedHandler}
+                    checked={
+                      imgUrlArr.length !== 0 && checkItems.length === imgUrlArr.length
+                        ? true
+                        : false
+                    }
+                  />
+                  <AgreeLabel htmlFor="checkAll">전체선택</AgreeLabel>
+                </AgreeCheck>
+                <ReferenDownload>
+                  <DownloadIcon />
+                  다운로드
+                </ReferenDownload>
+              </ReferenceProcess>
+              <SlideImgWrapper>
+                {imgUrlArr.map((imgUrl, idx) => (
+                  <SlideImgBox key={idx}>
+                    <ImgLabel>
+                      <ImgCheckInput
+                        id={`${idx}`}
+                        type="checkbox"
+                        checked={checkItems.includes(`${idx}`) ? true : false}
+                        onChange={e => {
+                          checkHandled(e);
+                        }}
+                      />
+                    </ImgLabel>
+                    <SlideImg src={imgUrl} alt="증빙사진" />
+                  </SlideImgBox>
+                ))}
+              </SlideImgWrapper>
+            </ReferenceImg>
+          ) : (
+            <ReferenceImgNone>
+              <ImgH2>증빙 서류</ImgH2>
+              <ImgNone>이미지 없음</ImgNone>
+            </ReferenceImgNone>
+          )}
+
+          <PopupContents>
+            {/* 예약 내역 */}
+            <ContentsTable>
+              <TableContainer>
+                <Table size="small">
+                  {/* Table Head */}
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCellHead>분류</StyledTableCellHead>
+                      <StyledTableCellHead>내용</StyledTableCellHead>
+                    </TableRow>
+                  </TableHead>
+                  {/* Table Body */}
+                  <TableBody>
+                    <StyledTableRow>
+                      <StyledTableCell>현장명</StyledTableCell>
+                      <StyledTableCell>{popupState.parkinglot_name}</StyledTableCell>
+                    </StyledTableRow>
+                    <TableRow>
+                      <StyledTableCell>차량번호</StyledTableCell>
+                      <StyledTableCell>{popupState.car_number}</StyledTableCell>
+                    </TableRow>
+                    <StyledTableRow>
+                      <StyledTableCell>이용상품권</StyledTableCell>
+                      <StyledTableCell>{popupState.parkingitem_name}</StyledTableCell>
+                    </StyledTableRow>
+                    <TableRow>
+                      <StyledTableCell>예약 이용 일시</StyledTableCell>
+                      <StyledTableCell>
+                        {popupState.reservation_from} ~ {popupState.reservation_to}
+                      </StyledTableCell>
+                    </TableRow>
+                    <StyledTableRow>
+                      <StyledTableCell>취소 사유</StyledTableCell>
+                      <StyledTableCell>{popupState.refund_reason}</StyledTableCell>
+                    </StyledTableRow>
+                    <TableRow>
+                      <StyledTableCell>결제 일자</StyledTableCell>
+                      <StyledTableCell>{popupState.paid_at}</StyledTableCell>
+                    </TableRow>
+                    <StyledTableRow>
+                      <StyledTableCell>결제 금액</StyledTableCell>
+                      <StyledTableCell>{popupState.payment_amount} 원</StyledTableCell>
+                    </StyledTableRow>
+                    <TableRow>
+                      <StyledTableCell>결제 포인트</StyledTableCell>
+                      <StyledTableCell>{popupState.point_amount} 포인트</StyledTableCell>
+                    </TableRow>
+                    <StyledTableRow>
+                      <StyledTableCell>총 결제 금액</StyledTableCell>
+                      <StyledTableCell>{popupState.total_amount} 원</StyledTableCell>
+                    </StyledTableRow>
+                    <TableRow>
+                      <StyledTableCell style={{ fontWeight: 600 }}>처리자</StyledTableCell>
+                      <StyledTableCell style={{ fontWeight: 600 }}>
+                        {popupState.admin_userid}
+                      </StyledTableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </ContentsTable>
+            {/* 환불 */}
+            <RefundTable>
+              <TableContainer>
+                <Table size="small">
+                  {/* Table Head */}
+                  <TableHead>
+                    <TableRow>
+                      <RefundTableHead>환불 금액</RefundTableHead>
+                      <RefundTableHead>환불 포인트</RefundTableHead>
+                      <RefundTableHead>환불 비율</RefundTableHead>
+                    </TableRow>
+                  </TableHead>
+                  {/* Table Body */}
+                  <TableBody>
+                    <TableRow>
+                      <RefundTableCell>500 원</RefundTableCell>
+                      <RefundTableCell>1,100 포인트</RefundTableCell>
+                      <RefundTableCell>
+                        <Select>
+                          <Option>100%</Option>
+                          <Option>80%</Option>
+                        </Select>
+                      </RefundTableCell>
+                    </TableRow>
+                    <TableRow>
+                      <RefundTableCell colSpan={3}>
+                        <RemarkLabel>비고</RemarkLabel>
+                        <RemarkInput />
+                      </RefundTableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </RefundTable>
+            <BtnDiv>
+              <RefundBtn>환불하기</RefundBtn>
+            </BtnDiv>
+          </PopupContents>
+        </PopupContainer>
+      )}
     </IllegalPopup>
   );
 }
@@ -139,21 +199,13 @@ const PopupContainer = styled.div`
 `;
 
 const PopupContents = styled.div`
-  // border: 1px solid orange;
   flex: 1;
-  // height: 100%;
 `;
 
-const ContentsTable = styled.div`
-  // border: 1px solid orange;
-
-  // height: 90%;
-`;
+const ContentsTable = styled.div``;
 
 const RefundTable = styled.div`
-  // border: 1px solid pink;
   margin: 30px 0 10px;
-  // height: 10%;
 `;
 
 export const Select = styled.select`
@@ -190,7 +242,7 @@ const BtnDiv = styled.div`
 `;
 
 const RefundBtn = styled.button`
-  background-color: ${props => props.theme.primaryColor};
+  background-color: ${props => props.theme.secondaryColor};
   width: 100%;
   height: 50px;
   color: #fff;
@@ -204,14 +256,30 @@ const ReferenceImg = styled.div`
   padding: 0 20px;
 `;
 
-const ImgH2 = styled.h2`
-  background-color: ${props => props.theme.secondaryColor};
-  height: 50px;
+const ReferenceImgNone = styled.div`
+  // border: 1px solid red;
+  flex: 1;
+  height: 100%;
+  padding: 0 20px;
+`;
+
+const ImgNone = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  margin-top: 25px;
+  height: 83%;
+  border: 1px dashed #c8c8c8;
+  color: #757575;
+`;
+
+const ImgH2 = styled.h2`
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 500;
+  border-bottom: 1.5px solid black;
 `;
 
 const SlideImgWrapper = styled.div`
@@ -219,17 +287,48 @@ const SlideImgWrapper = styled.div`
   overflow-y: scroll;
 `;
 
-const SlideImg = styled.img`
-  width: 100%;
-  display: block;
+const SlideImgBox = styled.div`
+  position: relative;
   margin-bottom: 15px;
   &:last-child {
     margin: 0 0;
   }
 `;
 
-const ReferenceProcess = styled.div`
+const ImgLabel = styled.label`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+`;
+
+const ImgCheckInput = styled.input`
+  width: 23px;
+  height: 23px;
+  margin-top: 10px;
   border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+  &:checked {
+    background-color: ${props => props.theme.primaryColor};
+    border-color: transparent;
+    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' height='20' width='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'><polyline points='20 6 9 17 4 12'></polyline></svg>");
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+  }
+`;
+
+const SlideImg = styled.img`
+  width: 100%;
+  height: 100%;
+  display: block;
+`;
+
+const ReferenceProcess = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -241,7 +340,20 @@ const AgreeCheck = styled.div`
   align-items: center;
 `;
 
-const ReferenDownload = styled.div``;
+const ReferenDownload = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  cursor: pointer;
+  &:hover {
+    font-weight: 600;
+  }
+`;
+
+const DownloadIcon = styled(IoCloudDownloadOutline)`
+  margin-right: 5px;
+  font-size: 16px;
+`;
 
 const AgreeCheckInput = styled.input`
   appearance: none;
@@ -268,21 +380,22 @@ const AgreeLabel = styled.label`
 // Table
 const StyledTableCellHead = styled(TableCell)`
   && {
-    background-color: ${props => props.theme.secondaryColor};
+    // background-color: ${props => props.theme.secondaryColor};
     font-family: 'Pretendard', sans-serif;
     font-weight: 500;
-    // border-bottom: 1px solid #ddd;
+    border-bottom: 1.5px solid black;
     height: 45px;
-    color: #fff;
+    // color: #fff;
     letter-spacing: -1px;
-    border: none;
+    // border: none;
   }
 `;
 
 const StyledTableRow = styled(TableRow)`
   && {
-    // background-color: ${props => props.theme.primaryLight};
-    background-color: #fafafa;
+    // background-color: ${props => props.theme.primaryLight};\
+    // background-color: #f8faff;
+    background-color: #fbfbfb;
   }
 `;
 
@@ -298,14 +411,15 @@ const StyledTableCell = styled(TableCell)`
 
 const RefundTableHead = styled(TableCell)`
   && {
-    background-color: ${props => props.theme.secondaryColor};
+    // background-color: ${props => props.theme.secondaryColor};
     font-family: 'Pretendard', sans-serif;
     font-weight: 500;
     height: 45px;
-    color: #fff;
+    // color: #fff;
     letter-spacing: -1px;
     text-align: center;
-    border: none;
+    // border: none;
+    border-bottom: 1.5px solid black;
   }
 `;
 

@@ -10,7 +10,6 @@ import SearchContainer from '../../../container/Searchbox/SearchContainer';
 export default function IllegalComponent(props) {
   const { openPopup, inform, startPost, endPost } = props;
 
-  console.log(startPost);
   return (
     <>
       <IllegalH1>부정주차 접수</IllegalH1>
@@ -48,7 +47,7 @@ export default function IllegalComponent(props) {
                         openPopup(info.id);
                       }}
                     >
-                      <StyledTableCell>{inform.length - idx}</StyledTableCell>
+                      <StyledTableCell>{info.id}</StyledTableCell>
                       <StyledTableCell>{info.parkinglot_name}</StyledTableCell>
                       <StyledTableCell>{info.car_number}</StyledTableCell>
                       <StyledTableCell>
@@ -72,7 +71,6 @@ export default function IllegalComponent(props) {
           </Table>
         </StyledTableContainer>
       </TableBase>
-      {/* <Pagination /> */}
     </>
   );
 }
@@ -85,6 +83,8 @@ const IllegalH1 = styled.h1`
 
 const TableBase = styled.div`
   min-height: 500px;
+  // border: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 5px;
 `;
 
 const StyledTableContainer = styled(TableContainer)`

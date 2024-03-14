@@ -26,7 +26,7 @@ export default function Pagination(props) {
 
 const PaginationBase = styled.div`
   // border: 1px solid black;
-  margin: 50px 0 0;
+  margin: 30px 0 0;
   padding: 8px 0;
 `;
 
@@ -44,12 +44,13 @@ const PaginationItem = styled.li`
   height: 30px;
   margin-right: 10px;
   cursor: pointer;
-  background: ${props => (props.isActive ? '#25d663' : 'none')};
-  border-radius: ${props => (props.isActive ? '50%' : '0')};
-  color: ${props => (props.isActive ? '#fff' : '#252525')};
+  // background: ${props => (props.isActive ? '#25d663' : 'none')};
+  // border-radius: ${props => (props.isActive ? '50%' : '0')};
+  color: ${props => (props.isActive ? '#25d663' : '#252525')};
+  // font-size: ${props => (props.isActive ? '17px' : '14px')};
 
   &:hover {
-    background: ${props => props.theme.secondaryColor};
+    background: ${props => props.theme.primaryColor};
     color: #fff;
     border-radius: 50%;
   }
