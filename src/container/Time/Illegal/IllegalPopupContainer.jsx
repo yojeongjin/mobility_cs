@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -7,10 +7,12 @@ import IllegalPopupComponent from '../../../components/Time/Ilegal/IllegalPopupC
 
 export default function IllegalPopupContainer() {
   const params = useParams();
-  const [popupState, setPopupState] = useState([]);
+  const rates = [100, 80];
+  const [rate, setRate] = useState('');
+  const [popupState, setPopupState] = useState({});
   const [imgUrlArr, setImgUrlArr] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let body = {
       id: params.idx,
     };
@@ -20,6 +22,7 @@ export default function IllegalPopupContainer() {
         const result = res.data;
         if (result.result === 'PF_200') {
           const data = result.data[0];
+          setPopupState(data);
           let arr = [];
           if (data.refund_data_uri) {
             arr = data.refund_data_uri?.split(',');
@@ -27,7 +30,7 @@ export default function IllegalPopupContainer() {
             arr = [];
           }
           setImgUrlArr(arr);
-          setPopupState(data);
+          setRate(100);
         } else {
           alert('정보를 불러오지 못했습니다.');
           window.onload();
@@ -38,5 +41,22 @@ export default function IllegalPopupContainer() {
       });
   }, []);
 
-  return <IllegalPopupComponent popupState={popupState} imgUrlArr={imgUrlArr} />;
+  const calculedFee = useMemo(() => {
+    return popupState.payment_amount * rate * 0.01;
+  }, [rate]);
+
+  const calculedPoint = useMemo(() => {
+    return popupState.point_amount * rate * 0.01;
+  }, [rate]);
+
+  return (
+    <IllegalPopupComponent
+      calculedFee={calculedFee}
+      calculedPoint={calculedPoint}
+      popupState={popupState}
+      imgUrlArr={imgUrlArr}
+      rates={rates}
+      setRate={setRate}
+    />
+  );
 }

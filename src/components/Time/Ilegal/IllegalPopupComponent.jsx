@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import { IoCloudDownloadOutline } from 'react-icons/io5';
 
 export default function IllegalPopupComponent(props) {
-  const { popupState, imgUrlArr } = props;
+  const { popupState, imgUrlArr, rates, calculedFee, calculedPoint, setRate } = props;
   const [checkItems, setCheckItems] = useState([]);
 
   const checkHandled = e => {
@@ -158,12 +158,18 @@ export default function IllegalPopupComponent(props) {
                   {/* Table Body */}
                   <TableBody>
                     <TableRow>
-                      <RefundTableCell>500 원</RefundTableCell>
-                      <RefundTableCell>1,100 포인트</RefundTableCell>
+                      <RefundTableCell>{calculedFee} 원</RefundTableCell>
+                      <RefundTableCell>{calculedPoint} 포인트</RefundTableCell>
                       <RefundTableCell>
-                        <Select>
-                          <Option>100%</Option>
-                          <Option>80%</Option>
+                        <Select
+                          onChange={e => {
+                            console.log(e);
+                            setRate(e.target.value);
+                          }}
+                        >
+                          {rates.map((rate, idx) => (
+                            <Option key={idx}>{rate}</Option>
+                          ))}
                         </Select>
                       </RefundTableCell>
                     </TableRow>
