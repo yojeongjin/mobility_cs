@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 // icons
 import { IoMailOutline, IoKeyOutline } from 'react-icons/io5';
 
-export default function SigninComponent() {
+export default function SigninComponent(props) {
+  const { login } = props;
+
+  const idRef = useRef(null);
+  const pwRef = useRef(null);
+
+  const signinHandler = () => {
+    const id = idRef.current.value;
+    const pw = pwRef.current.value;
+
+    let body = {
+      admin_userid: id,
+      admin_password: pw,
+    };
+    login(body);
+  };
+
   return (
     <SigninBase>
       <SigninContents>
@@ -12,7 +28,7 @@ export default function SigninComponent() {
         {/* id input */}
         <InputWrapper>
           <InputLabel htmlFor="idInput">
-            <Input id="idInput" type="text" required placeholder="&nbsp;" />
+            <Input id="idInput" type="text" required placeholder="&nbsp;" ref={idRef} />
             <InputSpan>
               <IdIcon />
               아이디를 입력해주세요.
@@ -22,7 +38,7 @@ export default function SigninComponent() {
         {/* pw input */}
         <InputWrapper>
           <InputLabel htmlFor="pwInput">
-            <Input id="pwInput" type="password" required placeholder="&nbsp;" />
+            <Input id="pwInput" type="password" required placeholder="&nbsp;" ref={pwRef} />
             <InputSpan>
               <PwIcon />
               비밀번호를 입력해주세요.
@@ -30,7 +46,13 @@ export default function SigninComponent() {
           </InputLabel>
         </InputWrapper>
         {/* button */}
-        <SigninBtn>로그인</SigninBtn>
+        <SigninBtn
+          onClick={() => {
+            signinHandler();
+          }}
+        >
+          로그인
+        </SigninBtn>
       </SigninContents>
     </SigninBase>
   );

@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getInform } from '../../../redux/modules/inform';
+// hooks
+import useAuth from '../../../hooks/useAuth';
 // components
 import Main from '../../../components/Main/Main';
 import IllegalComponent from '../../../components/Time/Ilegal/IllegalComponent';
 import Pagination from '../../../components/Pagination/Pagination';
 
 export default function IllegalContainer() {
+  const token = useAuth();
   const dispatch = useDispatch();
   const inform = useSelector(state => state.inform.inform);
 
@@ -32,6 +35,7 @@ export default function IllegalContainer() {
       car_number: '',
       from: '',
       to: '',
+      token: token,
     };
     // 정보 가져오기
     dispatch(getInform(body));

@@ -6,8 +6,17 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import { IoCloudDownloadOutline } from 'react-icons/io5';
 
 export default function IllegalPopupComponent(props) {
-  const { popupState, imgUrlArr, rates, calculedFee, calculedPoint, setRate } = props;
-  const [checkItems, setCheckItems] = useState([]);
+  const {
+    popupState,
+    imgUrlArr,
+    rates,
+    calculedFee,
+    calculedPoint,
+    setRate,
+    checkItems,
+    setCheckItems,
+    downloadImg,
+  } = props;
 
   const checkHandled = e => {
     checkItemHandler(e.target.id, e.target.checked);
@@ -51,7 +60,11 @@ export default function IllegalPopupComponent(props) {
                   />
                   <AgreeLabel htmlFor="checkAll">전체선택</AgreeLabel>
                 </AgreeCheck>
-                <ReferenDownload>
+                <ReferenDownload
+                  onClick={() => {
+                    downloadImg();
+                  }}
+                >
                   <DownloadIcon />
                   다운로드
                 </ReferenDownload>
@@ -346,19 +359,23 @@ const AgreeCheck = styled.div`
   align-items: center;
 `;
 
+const DownloadIcon = styled(IoCloudDownloadOutline)`
+  margin-right: 5px;
+  font-size: 16px;
+  color: #999;
+`;
+
 const ReferenDownload = styled.div`
   display: flex;
   align-items: center;
   padding: 5px 10px;
   cursor: pointer;
   &:hover {
-    font-weight: 600;
+    font-weight: 500;
+    ${DownloadIcon} {
+      color: ${props => props.theme.primaryColor};
+    }
   }
-`;
-
-const DownloadIcon = styled(IoCloudDownloadOutline)`
-  margin-right: 5px;
-  font-size: 16px;
 `;
 
 const AgreeCheckInput = styled.input`

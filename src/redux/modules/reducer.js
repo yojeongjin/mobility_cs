@@ -5,6 +5,7 @@ import { persistReducer } from 'redux-persist';
 import sessionStorage from 'redux-persist/es/storage/session';
 
 // reducers
+import auth from './auth';
 import inform from './inform';
 import search from './search';
 
@@ -14,6 +15,7 @@ const persistConfig = {
 };
 
 const reducer = combineReducers({
+  auth,
   inform,
   search,
 });

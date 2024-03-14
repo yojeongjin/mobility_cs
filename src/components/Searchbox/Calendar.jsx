@@ -204,6 +204,7 @@ const CalendarBox = styled.div`
   .react-datepicker__day--in-range {
     background-color: #cff4d5;
     border-radius: 0;
+
     &.react-datepicker__day--range-start,
     &.react-datepicker__day--range-end {
       position: relative;
