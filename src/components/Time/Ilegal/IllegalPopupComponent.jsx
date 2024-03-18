@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 // material-ui
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
@@ -16,6 +16,7 @@ export default function IllegalPopupComponent(props) {
     checkItems,
     setCheckItems,
     downloadImg,
+    setModalOpen,
   } = props;
 
   const checkHandled = e => {
@@ -197,7 +198,13 @@ export default function IllegalPopupComponent(props) {
               </TableContainer>
             </RefundTable>
             <BtnDiv>
-              <RefundBtn>환불하기</RefundBtn>
+              <RefundBtn
+                onClick={() => {
+                  setModalOpen(true);
+                }}
+              >
+                환불하기
+              </RefundBtn>
             </BtnDiv>
           </PopupContents>
         </PopupContainer>

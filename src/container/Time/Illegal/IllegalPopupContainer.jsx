@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 // hooks
 import useAuth from '../../../hooks/useAuth';
 // components
 import IllegalPopupComponent from '../../../components/Time/Ilegal/IllegalPopupComponent';
+import CheckModal from '../../../components/Modal/CheckModal';
 
 export default function IllegalPopupContainer() {
   const token = useAuth();
@@ -15,6 +16,7 @@ export default function IllegalPopupContainer() {
   const [popupState, setPopupState] = useState({});
   const [imgUrlArr, setImgUrlArr] = useState([]);
   const [checkItems, setCheckItems] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     let body = {
@@ -79,16 +81,31 @@ export default function IllegalPopupContainer() {
   };
 
   return (
-    <IllegalPopupComponent
-      calculedFee={calculedFee}
-      calculedPoint={calculedPoint}
-      popupState={popupState}
-      imgUrlArr={imgUrlArr}
-      rates={rates}
-      setRate={setRate}
-      checkItems={checkItems}
-      setCheckItems={setCheckItems}
-      downloadImg={downloadImg}
-    />
+    <>
+      <IllegalPopupComponent
+        calculedFee={calculedFee}
+        calculedPoint={calculedPoint}
+        popupState={popupState}
+        imgUrlArr={imgUrlArr}
+        rates={rates}
+        setRate={setRate}
+        checkItems={checkItems}
+        setCheckItems={setCheckItems}
+        downloadImg={downloadImg}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+      />
+      {modalOpen && (
+        <CheckModal
+          rate={rate}
+          carNumber={popupState.car_number}
+          calculedFee={calculedFee}
+          calculedPoint={calculedPoint}
+          onCloseModal={() => {
+            setModalOpen(false);
+          }}
+        />
+      )}
+    </>
   );
 }
