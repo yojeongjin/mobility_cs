@@ -8,7 +8,8 @@ import useAuth from '../../hooks/useAuth';
 // components
 import Search from '../../components/Searchbox/Search';
 
-export default function SearchContainer() {
+export default function SearchContainer(props) {
+  const { type } = props;
   const token = useAuth();
   const dispatch = useDispatch();
   const carNumRef = useRef(null);
@@ -18,7 +19,7 @@ export default function SearchContainer() {
 
   const searchInfo = useCallback(() => {
     let body = {
-      parkingitem_type: 'TIME',
+      parkingitem_type: type,
       car_number: carNumRef.current.value === null ? '' : carNumRef.current.value,
       from: dayjs(startDate).format('YYYY-MM-DD'),
       to: dayjs(endDate).format('YYYY-MM-DD'),

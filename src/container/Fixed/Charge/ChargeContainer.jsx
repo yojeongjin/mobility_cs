@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getInform } from '../../../redux/modules/inform';
+import { setEnd, setStart } from '../../../redux/modules/search';
+
 // hooks
 import useAuth from '../../../hooks/useAuth';
 // components
@@ -39,6 +41,9 @@ export default function ChargeContainer() {
     };
     // 정보 가져오기
     dispatch(getInform(body));
+    // 날짜 변경
+    dispatch(setStart(new Date()));
+    dispatch(setEnd(new Date()));
   }, []);
 
   // popup 새창 열기

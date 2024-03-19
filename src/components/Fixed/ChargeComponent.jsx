@@ -12,7 +12,7 @@ export default function ChargeComponent(props) {
     <>
       <IllegalH1>현장요금 접수</IllegalH1>
       {/* 검색 */}
-      <SearchContainer />
+      <SearchContainer type={'FIXED'} />
       {/* Table */}
       <TableComponent
         openPopup={openPopup}

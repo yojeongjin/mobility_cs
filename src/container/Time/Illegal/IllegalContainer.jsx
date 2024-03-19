@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getInform } from '../../../redux/modules/inform';
+import { setStart, setEnd } from '../../../redux/modules/search';
+
 // hooks
 import useAuth from '../../../hooks/useAuth';
 // components
@@ -31,7 +33,7 @@ export default function IllegalContainer() {
 
   useEffect(() => {
     let body = {
-      parkingitem_type: '',
+      parkingitem_type: 'TIME',
       car_number: '',
       from: '',
       to: '',
@@ -39,6 +41,9 @@ export default function IllegalContainer() {
     };
     // 정보 가져오기
     dispatch(getInform(body));
+    // 날짜 변경
+    dispatch(setStart(new Date()));
+    dispatch(setEnd(new Date()));
   }, []);
 
   // popup 새창 열기
