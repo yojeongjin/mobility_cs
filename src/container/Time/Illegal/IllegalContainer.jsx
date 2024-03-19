@@ -63,6 +63,7 @@ export default function IllegalContainer() {
             inform={inform}
             startPost={startPost}
             endPost={endPost}
+            pageRange={pageRange}
           />
           <Pagination
             btnRange={btnRange}

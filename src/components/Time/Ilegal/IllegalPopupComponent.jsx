@@ -15,8 +15,8 @@ export default function IllegalPopupComponent(props) {
     setRate,
     checkItems,
     setCheckItems,
-    downloadImg,
     setModalOpen,
+    downloadImg,
   } = props;
 
   const checkHandled = e => {
@@ -372,7 +372,7 @@ const DownloadIcon = styled(IoCloudDownloadOutline)`
   color: #999;
 `;
 
-const ReferenDownload = styled.div`
+const ReferenDownload = styled.button`
   display: flex;
   align-items: center;
   padding: 5px 10px;

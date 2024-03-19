@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 export default function CheckModal(props) {
-  const { carNumber, rate, calculedFee, calculedPoint, onCloseModal } = props;
+  const { carNumber, rate, calculedFee, calculedPoint, onCloseModal, refundFee } = props;
 
   useEffect(() => {
     // 외부화면 스크롤방지
@@ -65,7 +65,13 @@ export default function CheckModal(props) {
             닫기
           </CancelBtn>
 
-          <CheckBtn>확인</CheckBtn>
+          <CheckBtn
+            onClick={() => {
+              refundFee();
+            }}
+          >
+            확인
+          </CheckBtn>
         </BtnContainer>
       </ModalInner>
     </ModalBase>

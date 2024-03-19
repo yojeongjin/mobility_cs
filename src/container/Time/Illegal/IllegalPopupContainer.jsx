@@ -57,27 +57,38 @@ export default function IllegalPopupContainer() {
   }, [rate]);
 
   const downloadImg = () => {
-    console.log(imgUrlArr);
+    // 추후 수정
+    const link = document.createElement('a');
 
-    fetch(imgUrlArr[0], { method: 'GET' })
-      .then(res => {
-        return res.blob();
-      })
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'name';
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(_ => {
-          window.URL.revokeObjectURL(url);
-        }, 1000);
-        a.remove();
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    link.setAttribute('href', imgUrlArr[0]);
+    link.setAttribute('download', '이미지.jpeg');
+
+    // 링크를 문서(body)에 추가
+    document.body.appendChild(link);
+
+    // 링크 클릭 => 파일 다운로드
+    link.click();
+  };
+
+  const refundFee = async () => {
+    let body = {
+      order_id: popupState.order_id,
+      refund_rate: rate,
+      refund_reason: popupState.refund_reason,
+      token: token,
+    };
+
+    try {
+      const res = await axios.post('http://223.130.140.159:1880/chatbot/cancelPay', body);
+
+      if (res.data.result === 'PF_200') {
+        alert('환불이 완료되었습니다.');
+        setModalOpen(false);
+        window.location.reload('/');
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -91,9 +102,9 @@ export default function IllegalPopupContainer() {
         setRate={setRate}
         checkItems={checkItems}
         setCheckItems={setCheckItems}
-        downloadImg={downloadImg}
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
+        downloadImg={downloadImg}
       />
       {modalOpen && (
         <CheckModal
@@ -104,6 +115,7 @@ export default function IllegalPopupContainer() {
           onCloseModal={() => {
             setModalOpen(false);
           }}
+          refundFee={refundFee}
         />
       )}
     </>

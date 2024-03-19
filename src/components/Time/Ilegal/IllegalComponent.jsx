@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import SearchContainer from '../../../container/Searchbox/SearchContainer';
 
 export default function IllegalComponent(props) {
-  const { openPopup, inform, startPost, endPost } = props;
+  const { openPopup, inform, startPost, endPost, pageRange } = props;
 
   return (
     <>
@@ -47,7 +47,7 @@ export default function IllegalComponent(props) {
                         openPopup(info.id);
                       }}
                     >
-                      <StyledTableCell>{info.id}</StyledTableCell>
+                      <StyledTableCell>{inform.length - endPost + pageRange - idx}</StyledTableCell>
                       <StyledTableCell>{info.parkinglot_name}</StyledTableCell>
                       <StyledTableCell>{info.car_number}</StyledTableCell>
                       <StyledTableCell>

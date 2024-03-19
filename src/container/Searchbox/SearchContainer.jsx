@@ -3,10 +3,13 @@ import dayjs from 'dayjs';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getInform } from '../../redux/modules/inform';
+// hooks
+import useAuth from '../../hooks/useAuth';
 // components
 import Search from '../../components/Searchbox/Search';
 
 export default function SearchContainer() {
+  const token = useAuth();
   const dispatch = useDispatch();
   const carNumRef = useRef(null);
   // from-to
@@ -19,6 +22,7 @@ export default function SearchContainer() {
       car_number: carNumRef.current.value === null ? '' : carNumRef.current.value,
       from: dayjs(startDate).format('YYYY-MM-DD'),
       to: dayjs(endDate).format('YYYY-MM-DD'),
+      token: token,
     };
 
     // 정보 가져오기
