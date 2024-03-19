@@ -11,6 +11,8 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Signin from './routes/Signin';
 import Illegal from './routes/Illegal/Illegal';
 import IllegalPopup from './routes/Illegal/IllegalPopup';
+import Charge from './routes/Charge/Charge';
+import ChargePopup from './routes/Charge/ChargePopup';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <GlobalStyles />
         <Sidebar />
         <Routes>
+          <Route path="/charge/popup/:idx" element={<ChargePopup />} />
+          <Route path="/charge" element={<Charge />} />
           <Route path="/illegal/popup/:idx" element={<IllegalPopup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/" element={<Illegal />} />

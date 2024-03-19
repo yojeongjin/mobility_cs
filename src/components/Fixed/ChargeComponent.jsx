@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 // components
-import SearchContainer from '../../../container/Searchbox/SearchContainer';
-import TableComponent from '../../Table/TableComponent';
+import SearchContainer from '../../container/Searchbox/SearchContainer';
+import TableComponent from '../Table/TableComponent';
 
-export default function IllegalComponent(props) {
+export default function ChargeComponent(props) {
   const { openPopup, inform, startPost, endPost, pageRange } = props;
 
   return (
     <>
-      <IllegalH1>부정주차 접수</IllegalH1>
+      <IllegalH1>현장요금 접수</IllegalH1>
       {/* 검색 */}
       <SearchContainer />
       {/* Table */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 //icons
@@ -11,6 +11,7 @@ export default function Sidebar() {
 
   if (location.pathname === '/signin') return null;
   if (location.pathname === `/illegal/popup/${params}`) return null;
+  if (location.pathname === `/charge/popup/${params}`) return null;
 
   return (
     <SidebarBase>
@@ -22,7 +23,9 @@ export default function Sidebar() {
           <MenuItem>
             <ItemH2>공유주차</ItemH2>
             <SubMenu>
-              <SubItem isLocation={location.pathname === '/'}>부정주차</SubItem>
+              <Link to="/">
+                <SubItem isLocation={location.pathname === '/'}>부정주차</SubItem>
+              </Link>
               <SubItem>공사중·삭선</SubItem>
             </SubMenu>
           </MenuItem>
@@ -30,7 +33,9 @@ export default function Sidebar() {
           <MenuItem>
             <ItemH2>당일권</ItemH2>
             <SubMenu>
-              <SubItem>현장요금</SubItem>
+              <Link to="/charge">
+                <SubItem isLocation={location.pathname === '/charge'}>현장요금</SubItem>
+              </Link>
               <SubItem>만차·현장이슈</SubItem>
             </SubMenu>
           </MenuItem>

@@ -84,7 +84,7 @@ export default function IllegalPopupContainer() {
       if (res.data.result === 'PF_200') {
         alert('환불이 완료되었습니다.');
         setModalOpen(false);
-        window.location.reload('/');
+        window.close();
       }
     } catch (err) {
       console.log(err);

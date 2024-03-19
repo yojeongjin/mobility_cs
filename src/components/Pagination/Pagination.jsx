@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 export default function Pagination(props) {
-  const { btnRange, startPage, currentSet, page, setPage, endPage, totalSet } = props;
+  const { btnRange, startPage, currentSet, page, setPage } = props;
 
   return (
     <PaginationBase>
@@ -42,12 +42,11 @@ const PaginationItem = styled.li`
   justify-content: center;
   width: 30px;
   height: 30px;
-  margin-right: 10px;
+  margin-right: 15px;
   cursor: pointer;
-  // background: ${props => (props.isActive ? '#25d663' : 'none')};
-  // border-radius: ${props => (props.isActive ? '50%' : '0')};
-  color: ${props => (props.isActive ? '#25d663' : '#252525')};
-  // font-size: ${props => (props.isActive ? '17px' : '14px')};
+  background: ${props => (props.isActive ? '#252525' : 'none')};
+  border-radius: ${props => (props.isActive ? '50%' : '0')};
+  color: ${props => (props.isActive ? '#fff' : '#252525')};
 
   &:hover {
     background: ${props => props.theme.primaryColor};
