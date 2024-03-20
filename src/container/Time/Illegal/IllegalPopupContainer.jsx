@@ -57,19 +57,19 @@ export default function IllegalPopupContainer() {
   }, [rate]);
 
   const downloadImg = async () => {
-    const urlArr = await getParams();
+    const urlArr = getParams();
 
-    for (const url of urlArr) {
+    for (let i = 0; i < urlArr.length; i++) {
       await axios
-        .get(url, {
+        .get(urlArr[i], {
           responseType: 'blob',
         })
         .then(res => {
-          const url = window.URL.createObjectURL(new Blob([res.data])); // blob 객체 생성 및 url 생성
+          const url = window.URL.createObjectURL(new Blob([res.data], { type: 'image/jpeg' })); // blob 객체 생성 및 url 생성
           const a = document.createElement('a'); // a태그 생성
 
           a.href = url; // url 연결
-          a.download = 'image.jpeg'; // 파일명 설정
+          a.download = `${popupState.parkinglot_name}_${popupState.car_number}-${i + 1}`; // 파일명 설정
 
           document.body.appendChild(a);
           a.click();
