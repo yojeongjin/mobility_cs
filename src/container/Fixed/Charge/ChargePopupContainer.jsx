@@ -44,18 +44,28 @@ export default function ChargePopupContainer() {
       });
   }, []);
 
-  const downloadImg = () => {
-    // 추후 수정
-    const link = document.createElement('a');
+  const downloadImg = async () => {
+    await axios
+      .get('/images/2024314_1710397330908_7.0173.jpeg', {
+        responseType: 'blob',
+      })
+      .then(res => {
+        const url = window.URL.createObjectURL(new Blob([res.data])); // blob 객체 생성 및 url 생성
+        const a = document.createElement('a'); // a태그 생성
 
-    link.setAttribute('href', imgUrlArr[0]);
-    link.setAttribute('download', '이미지.jpeg');
+        a.href = url; // url 연결
+        a.download = 'image.jpeg'; // 파일명 설정
 
-    // 링크를 문서(body)에 추가
-    document.body.appendChild(link);
+        document.body.appendChild(a);
+        a.click();
 
-    // 링크 클릭 => 파일 다운로드
-    link.click();
+        // 다운로드 후 url, a 태그 정리
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
