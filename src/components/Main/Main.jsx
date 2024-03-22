@@ -7,7 +7,7 @@ export default function Main(props) {
   return <MainBase>{children}</MainBase>;
 }
 
-const MainBase = styled.div`
+const MainBase = styled.main`
   position: fixed;
   top: 0;
   bottom: 0;

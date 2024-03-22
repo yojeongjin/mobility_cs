@@ -57,6 +57,7 @@ export default function IllegalPopupContainer() {
   }, [rate]);
 
   const downloadImg = async () => {
+    if (checkItems.length === 0) return alert('다운로드 할 사진을 선택해주세요.');
     const urlArr = getParams();
 
     for (let i = 0; i < urlArr.length; i++) {

@@ -45,7 +45,7 @@ export default function ChargePopupContainer() {
   }, []);
 
   const downloadImg = async () => {
-    console.log(checkItems);
+    if (checkItems.length === 0) return alert('다운로드 할 사진을 선택해주세요.');
     const urlArr = getParams();
 
     for (let i = 0; i < urlArr.length; i++) {

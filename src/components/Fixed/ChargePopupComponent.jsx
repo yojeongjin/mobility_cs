@@ -159,6 +159,7 @@ const PopupContainer = styled.div`
 `;
 
 const PopupContents = styled.div`
+  position: relative;
   flex: 1;
 `;
 

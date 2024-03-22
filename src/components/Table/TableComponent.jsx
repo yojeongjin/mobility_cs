@@ -27,7 +27,7 @@ export default function TableComponent(props) {
           {inform.length === 0 ? (
             <TableBody>
               <TableRow>
-                <StyledTableCell colSpan={6}>환불조회건이 없습니다.</StyledTableCell>
+                <NoneTableCell colSpan={6}>검색 결과가 없습니다.</NoneTableCell>
               </TableRow>
             </TableBody>
           ) : (
@@ -47,7 +47,11 @@ export default function TableComponent(props) {
                       {dayjs(info.created_at).format('YYYY년 MM월 DD일 HH:mm')}
                     </StyledTableCell>
                     <StyledTableCell>
-                      {info.refund_data_uri === '' ? '미제출' : '제출'}
+                      {info.refund_data_uri === '' ? (
+                        <Submit isSubmit={info.refund_data_uri === ''}>미제출</Submit>
+                      ) : (
+                        <Submit isSubmit={info.refund_data_uri === ''}>제출</Submit>
+                      )}
                     </StyledTableCell>
                     <StyledTableCell>
                       {info.order_state === 'REFUNDED' ? (
@@ -68,23 +72,20 @@ export default function TableComponent(props) {
 }
 
 const TableBase = styled.div`
-  min-height: 500px;
+  background-color: #fff;
+  min-height: 480px;
 `;
 
 const StyledTableContainer = styled(TableContainer)`
-  max-height: 480px;
   border-top: 1.5px solid #c8c8c8;
-  // border-top: 1.5px solid black;
   padding: 3px 0;
 `;
 
 const StyledTableCellHead = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
-    font-weight: 400;
-    background: #fbfbfb;
+    font-weight: 500;
     border-bottom: 1px solid #ddd;
-    color: #555;
     letter-spacing: -1px;
   }
 `;
@@ -93,9 +94,20 @@ const StyledTableCell = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
     height: 40px;
+    color: #333;
   }
   &:hover {
     cursor: pointer;
+  }
+`;
+
+const NoneTableCell = styled(TableCell)`
+  && {
+    font-family: 'Pretendard', sans-serif;
+    height: 200px;
+    color: #333;
+    text-align: center;
+    border: none;
   }
 `;
 
@@ -112,10 +124,25 @@ export const ApplyBtn = styled.button`
 `;
 
 const State = styled.div`
-  background-color: ${props => (props.isRefunded ? '#dae9f4' : '#FE907E')};
-  border-radius: 20px;
-  width: 55px;
+  background-color: ${props => (props.isRefunded ? '#EBF9EB' : '#FEF8E8')};
+  border-radius: 15px;
+  width: 57px;
   text-align: center;
-  padding: 5px 0;
-  color: ${props => (props.isRefunded ? '#333' : '#fff')};
+  padding: 6px 0;
+  color: ${props => (props.isRefunded ? '#2CC52C' : '#FCD051')};
+`;
+
+const Submit = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: ${props => (props.isSubmit ? '#fe907e' : '#66AEF9')};
+  &:before {
+    background-color: ${props => (props.isSubmit ? '#fe907e' : '#66AEF9')};
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
 `;

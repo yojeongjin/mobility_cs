@@ -7,7 +7,9 @@ export default function Pagination(props) {
   return (
     <PaginationBase>
       <PaginationMenu>
-        {currentSet !== undefined && currentSet > 1 && <PaginationItem>이전</PaginationItem>}
+        {currentSet !== undefined && currentSet > 1 && currentSet !== Infinity && (
+          <PaginationItem>이전</PaginationItem>
+        )}
         {btnRange !== undefined &&
           Array(btnRange)
             .fill(startPage)
