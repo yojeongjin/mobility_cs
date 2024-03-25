@@ -109,6 +109,7 @@ export default function AnotherPopupComponent(props) {
 
             <BtnDiv>
               <RefundBtn
+                disabled={popupState.order_state === 'REFUNDED'}
                 onClick={() => {
                   setModalOpen(true);
                 }}
@@ -183,6 +184,10 @@ const RefundBtn = styled.button`
   color: #fff;
   padding: 0 15px;
   font-size: 15px;
+  &:disabled {
+    background-color: #ececec;
+    cursor: default;
+  }
 `;
 
 const ReferenceImg = styled.div`
@@ -314,60 +319,4 @@ const AgreeCheckInput = styled.input`
 
 const AgreeLabel = styled.label`
   cursor: pointer;
-`;
-
-// Table
-const StyledTableCellHead = styled(TableCell)`
-  && {
-    // background-color: ${props => props.theme.secondaryColor};
-    font-family: 'Pretendard', sans-serif;
-    font-weight: 500;
-    border-bottom: 1.5px solid black;
-    height: 45px;
-    // color: #fff;
-    letter-spacing: -1px;
-    // border: none;
-  }
-`;
-
-const StyledTableRow = styled(TableRow)`
-  && {
-    // background-color: ${props => props.theme.primaryLight};
-    // background-color: #f8faff;
-    background-color: #fbfbfb;
-  }
-`;
-
-const StyledTableCell = styled(TableCell)`
-  && {
-    font-family: 'Pretendard', sans-serif;
-    height: 45px;
-    color: ${props => props.theme.fontColor};
-    // color: ${props => (props.isSubject ? '#aaa' : '#252525')};
-    border: none;
-  }
-`;
-
-const RefundTableHead = styled(TableCell)`
-  && {
-    // background-color: ${props => props.theme.secondaryColor};
-    font-family: 'Pretendard', sans-serif;
-    font-weight: 500;
-    height: 45px;
-    // color: #fff;
-    letter-spacing: -1px;
-    text-align: center;
-    // border: none;
-    border-bottom: 1.5px solid black;
-  }
-`;
-
-const RefundTableCell = styled(TableCell)`
-  && {
-    font-family: 'Pretendard', sans-serif;
-    height: 45px;
-    color: ${props => props.theme.fontColor};
-    border: none;
-    text-align: center;
-  }
 `;

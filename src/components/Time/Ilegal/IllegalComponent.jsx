@@ -22,6 +22,7 @@ export default function IllegalComponent(props) {
         startPost={startPost}
         endPost={endPost}
         pageRange={pageRange}
+        type={'TIME'}
       />
     </>
   );

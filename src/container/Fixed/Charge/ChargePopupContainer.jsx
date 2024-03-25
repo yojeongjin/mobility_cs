@@ -82,6 +82,28 @@ export default function ChargePopupContainer() {
     return arr;
   };
 
+  const applyStatus = async () => {
+    let body = {
+      id: params.idx,
+      token: token,
+      refund_state: '접수완료',
+    };
+
+    try {
+      const res = await axios.post('http://223.130.140.159:1880/chatbot/updateRequest', body);
+
+      if (res.data.result === 'PF_200') {
+        alert('접수가 완료되었습니다.');
+        window.close();
+      } else {
+        alert('접수에 실패하였습니다. 다시 시도해주세요.');
+        window.close();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <ChargePopupComponent
       popupState={popupState}
@@ -91,6 +113,7 @@ export default function ChargePopupContainer() {
       modalOpen={modalOpen}
       setModalOpen={setModalOpen}
       downloadImg={downloadImg}
+      applyStatus={applyStatus}
     />
   );
 }

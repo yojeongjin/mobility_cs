@@ -5,14 +5,14 @@ import styled from 'styled-components';
 import SearchContainer from '../../container/Searchbox/SearchContainer';
 import TableComponent from '../Table/TableComponent';
 
-export default function ChargeComponent(props) {
+export default function MonthlyComponent(props) {
   const { openPopup, inform, startPost, endPost, pageRange } = props;
 
   return (
     <>
       <IllegalH1>현장요금 접수</IllegalH1>
       {/* 검색 */}
-      <SearchContainer type={'FIXED'} />
+      <SearchContainer type={'MONTHLY'} />
       {/* Table */}
       <TableComponent
         openPopup={openPopup}
@@ -20,7 +20,7 @@ export default function ChargeComponent(props) {
         startPost={startPost}
         endPost={endPost}
         pageRange={pageRange}
-        type={'FIXED'}
+        type={'MONTHLY'}
       />
     </>
   );

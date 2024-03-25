@@ -6,8 +6,9 @@ import dayjs from 'dayjs';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 export default function TableComponent(props) {
-  const { openPopup, inform, startPost, endPost, pageRange } = props;
+  const { openPopup, inform, startPost, endPost, pageRange, type } = props;
 
+  console.log(type);
   return (
     <TableBase>
       <StyledTableContainer>
@@ -19,7 +20,7 @@ export default function TableComponent(props) {
               <StyledTableCellHead>주차장명</StyledTableCellHead>
               <StyledTableCellHead>차량정보</StyledTableCellHead>
               <StyledTableCellHead>업로드시간</StyledTableCellHead>
-              <StyledTableCellHead>증빙서류</StyledTableCellHead>
+              {type === 'TIME' ? <StyledTableCellHead>증빙서류</StyledTableCellHead> : null}
               <StyledTableCellHead>상태</StyledTableCellHead>
             </TableRow>
           </TableHead>
@@ -46,20 +47,53 @@ export default function TableComponent(props) {
                     <StyledTableCell>
                       {dayjs(info.created_at).format('YYYY년 MM월 DD일 HH:mm')}
                     </StyledTableCell>
-                    <StyledTableCell>
-                      {info.refund_data_uri === '' ? (
-                        <Submit isSubmit={info.refund_data_uri === ''}>미제출</Submit>
-                      ) : (
-                        <Submit isSubmit={info.refund_data_uri === ''}>제출</Submit>
-                      )}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      {info.order_state === 'REFUNDED' ? (
-                        <State isRefunded={info.order_state === 'REFUNDED'}>완료</State>
-                      ) : (
-                        <State isRefunded={info.order_state === 'REFUNDED'}>대기</State>
-                      )}
-                    </StyledTableCell>
+                    {type === 'TIME' ? (
+                      <StyledTableCell>
+                        {info.refund_data_uri === '' ? (
+                          <Submit>
+                            <SubmitLabel isSubmit={info.refund_data_uri === ''}>미제출</SubmitLabel>
+                          </Submit>
+                        ) : (
+                          <Submit>
+                            <SubmitLabel isSubmit={info.refund_data_uri === ''}>제출</SubmitLabel>
+                          </Submit>
+                        )}
+                      </StyledTableCell>
+                    ) : null}
+
+                    {type === 'TIME' ? (
+                      <StyledTableCell>
+                        {info.order_state === 'REFUNDED' ? (
+                          <State>
+                            <StateLabel isRefunded={info.order_state === 'REFUNDED'}>
+                              완료
+                            </StateLabel>
+                          </State>
+                        ) : (
+                          <State>
+                            <StateLabel isRefunded={info.order_state === 'REFUNDED'}>
+                              대기
+                            </StateLabel>
+                          </State>
+                        )}
+                      </StyledTableCell>
+                    ) : (
+                      <StyledTableCell>
+                        {info.refund_state === '접수완료' ? (
+                          <State>
+                            <StateLabel isRefunded={info.refund_state === '접수완료'}>
+                              완료
+                            </StateLabel>
+                          </State>
+                        ) : (
+                          <State>
+                            <StateLabel isRefunded={info.refund_state === '접수완료'}>
+                              대기
+                            </StateLabel>
+                          </State>
+                        )}
+                      </StyledTableCell>
+                    )}
                   </TableRow>
                 );
               })}
@@ -87,6 +121,7 @@ const StyledTableCellHead = styled(TableCell)`
     font-weight: 500;
     border-bottom: 1px solid #ddd;
     letter-spacing: -1px;
+    text-align: center;
   }
 `;
 
@@ -95,6 +130,7 @@ const StyledTableCell = styled(TableCell)`
     font-family: 'Pretendard', sans-serif;
     height: 40px;
     color: #333;
+    text-align: center;
   }
   &:hover {
     cursor: pointer;
@@ -124,6 +160,12 @@ export const ApplyBtn = styled.button`
 `;
 
 const State = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const StateLabel = styled.div`
   background-color: ${props => (props.isRefunded ? '#EBF9EB' : '#FEF8E8')};
   border-radius: 15px;
   width: 57px;
@@ -133,6 +175,12 @@ const State = styled.div`
 `;
 
 const Submit = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const SubmitLabel = styled.div`
   position: relative;
   display: flex;
   align-items: center;

@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import { IoCloudDownloadOutline } from 'react-icons/io5';
 
 export default function ChargePopupComponent(props) {
-  const { popupState, imgUrlArr, checkItems, setCheckItems, downloadImg } = props;
+  const { popupState, imgUrlArr, checkItems, setCheckItems, downloadImg, applyStatus } = props;
 
   const checkHandled = e => {
     checkItemHandler(e.target.id, e.target.checked);
@@ -140,6 +140,15 @@ export default function ChargePopupComponent(props) {
                 </Table>
               </TableContainer>
             </ContentsTable>
+
+            <ApplyBtn
+              disabled={popupState.refund_state === '접수완료'}
+              onClick={() => {
+                applyStatus();
+              }}
+            >
+              처리 완료
+            </ApplyBtn>
           </PopupContents>
         </PopupContainer>
       )}
@@ -199,6 +208,7 @@ const ImgH2 = styled.h2`
 
 const SlideImgWrapper = styled.div`
   height: 80%;
+  // height: 85%;
   overflow-y: scroll;
 `;
 
@@ -295,6 +305,21 @@ const AgreeCheckInput = styled.input`
 
 const AgreeLabel = styled.label`
   cursor: pointer;
+`;
+
+const ApplyBtn = styled.button`
+  background-color: ${props => props.theme.primaryColor};
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  padding: 0 15px;
+  font-size: 15px;
+  &:disabled {
+    background-color: #ececec;
+    cursor: default;
+  }
 `;
 
 // Table

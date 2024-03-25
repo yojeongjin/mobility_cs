@@ -18,6 +18,7 @@ export default function AnotherComponent(props) {
         startPost={startPost}
         endPost={endPost}
         pageRange={pageRange}
+        type={'TIME'}
       />
     </>
   );

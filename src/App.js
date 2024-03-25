@@ -15,6 +15,7 @@ import Another from './routes/Time/Another/Another';
 import AnotherPopup from './routes/Time/Another/AnotherPopup';
 import Charge from './routes/Charge/Charge';
 import ChargePopup from './routes/Charge/ChargePopup';
+import Monthly from './routes/Monthly/Monthly';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <GlobalStyles />
         <Sidebar />
         <Routes>
+          <Route path="/monthly" element={<Monthly />} />
           <Route path="/charge/popup/:idx" element={<ChargePopup />} />
           <Route path="/charge" element={<Charge />} />
           <Route path="/another/popup/:idx" element={<AnotherPopup />} />

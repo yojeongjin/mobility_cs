@@ -109,6 +109,9 @@ export default function IllegalPopupContainer() {
         alert('환불이 완료되었습니다.');
         setModalOpen(false);
         window.close();
+      } else {
+        alert('환불에 실패하였습니다. 다시 시도해주세요.');
+        window.close();
       }
     } catch (err) {
       console.log(err);

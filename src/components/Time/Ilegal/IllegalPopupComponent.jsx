@@ -108,6 +108,7 @@ export default function IllegalPopupComponent(props) {
 
             <BtnDiv>
               <RefundBtn
+                disabled={popupState.order_state === 'REFUNDED'}
                 onClick={() => {
                   setModalOpen(true);
                 }}
@@ -182,6 +183,10 @@ const RefundBtn = styled.button`
   color: #fff;
   padding: 0 15px;
   font-size: 15px;
+  &:disabled {
+    background-color: #ececec;
+    cursor: default;
+  }
 `;
 
 const ReferenceImg = styled.div`

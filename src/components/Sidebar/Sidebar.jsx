@@ -8,7 +8,6 @@ import { VscSignOut } from 'react-icons/vsc';
 export default function Sidebar() {
   const location = useLocation();
   const params = location.pathname.split('/')[3];
-  console.log(location);
 
   if (location.pathname === '/signin') return null;
   if (location.pathname === `/illegal/popup/${params}`) return null;
@@ -47,7 +46,9 @@ export default function Sidebar() {
           <MenuItem>
             <ItemH2>월주차</ItemH2>
             <SubMenu>
-              <SubItem>월주차 현장요금</SubItem>
+              <Link to="/monthly">
+                <SubItem isLocation={location.pathname === '/monthly'}>월주차 현장요금</SubItem>
+              </Link>
             </SubMenu>
           </MenuItem>
         </SideMenu>
@@ -64,7 +65,7 @@ export default function Sidebar() {
 }
 
 const SidebarBase = styled.div`
-  background-color: ${props => props.theme.secondaryColor};
+  background-color: ${props => props.theme.fontColor};
   position: fixed;
   top: 0;
   bottom: 0;
@@ -112,8 +113,7 @@ const SubMenu = styled.ul``;
 
 const SubItem = styled.li`
   padding: 8px 0;
-  // color: #aaa;
-  color: ${props => (props.isLocation ? '#25D663' : '#aaa')};
+  color: ${props => (props.isLocation ? '#02ca2d' : '#aaa')};
   &:first-child {
     margin-top: 10px;
   }
