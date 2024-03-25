@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 // icons
@@ -21,6 +21,9 @@ export default function SigninComponent(props) {
     login(body);
   };
 
+  const [pw, setPw] = useState(null);
+  console.log(pw);
+
   return (
     <SigninBase>
       <SigninContents>
@@ -38,7 +41,14 @@ export default function SigninComponent(props) {
         {/* pw input */}
         <InputWrapper>
           <InputLabel htmlFor="pwInput">
-            <Input id="pwInput" type="password" required placeholder="&nbsp;" ref={pwRef} />
+            <Input
+              id="pwInput"
+              type="password"
+              required
+              placeholder="&nbsp;"
+              ref={pwRef}
+              onChange={e => setPw(e.target.value)}
+            />
             <InputSpan>
               <PwIcon />
               비밀번호를 입력해주세요.
@@ -47,6 +57,7 @@ export default function SigninComponent(props) {
         </InputWrapper>
         {/* button */}
         <SigninBtn
+          disabled={pw === null}
           onClick={() => {
             signinHandler();
           }}
@@ -138,8 +149,8 @@ border-radius: 8px;
 `;
 
 const SigninBtn = styled.button`
-  // background-color: ${props => props.theme.primaryColor};
-  background-color: #ececec;
+  background-color: ${props => props.theme.primaryColor};
+  // background-color: #ececec;
   width: 100%;
   max-width: 300px;
   min-width: 230px;
@@ -148,6 +159,9 @@ const SigninBtn = styled.button`
   border-radius: 6px;
   color: #fff;
   font-size: 15px;
+  &:disabled {
+    background-color: #ececec;
+  }
 `;
 
 const IdIcon = styled(IoMailOutline)`

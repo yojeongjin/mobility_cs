@@ -70,7 +70,7 @@ export default function IllegalPopupContainer() {
           const a = document.createElement('a'); // a태그 생성
 
           a.href = url; // url 연결
-          a.download = `${popupState.parkinglot_name}_${popupState.car_number}-${i + 1}`; // 파일명 설정
+          a.download = `${popupState.parkinglot_name}(${popupState.car_number})-${i + 1}`; // 파일명 설정
 
           document.body.appendChild(a);
           a.click();

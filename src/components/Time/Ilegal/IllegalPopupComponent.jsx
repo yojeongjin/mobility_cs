@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 // icon
 import { IoCloudDownloadOutline } from 'react-icons/io5';
+import PopupTableComponent from '../../Table/PopupTableComponent';
 
 export default function IllegalPopupComponent(props) {
   const {
@@ -97,106 +98,14 @@ export default function IllegalPopupComponent(props) {
 
           <PopupContents>
             {/* 예약 내역 */}
-            <ContentsTable>
-              <TableContainer>
-                <Table size="small">
-                  {/* Table Head */}
-                  <TableHead>
-                    <TableRow>
-                      <StyledTableCellHead>분류</StyledTableCellHead>
-                      <StyledTableCellHead>내용</StyledTableCellHead>
-                    </TableRow>
-                  </TableHead>
-                  {/* Table Body */}
-                  <TableBody>
-                    <StyledTableRow>
-                      <StyledTableCell>현장명</StyledTableCell>
-                      <StyledTableCell>{popupState.parkinglot_name}</StyledTableCell>
-                    </StyledTableRow>
-                    <TableRow>
-                      <StyledTableCell>차량번호</StyledTableCell>
-                      <StyledTableCell>{popupState.car_number}</StyledTableCell>
-                    </TableRow>
-                    <StyledTableRow>
-                      <StyledTableCell>이용상품권</StyledTableCell>
-                      <StyledTableCell>{popupState.parkingitem_name}</StyledTableCell>
-                    </StyledTableRow>
-                    <TableRow>
-                      <StyledTableCell>예약 이용 일시</StyledTableCell>
-                      <StyledTableCell>
-                        {popupState.reservation_from} ~ {popupState.reservation_to}
-                      </StyledTableCell>
-                    </TableRow>
-                    <StyledTableRow>
-                      <StyledTableCell>취소 사유</StyledTableCell>
-                      <StyledTableCell>{popupState.refund_reason}</StyledTableCell>
-                    </StyledTableRow>
-                    <TableRow>
-                      <StyledTableCell>결제 일자</StyledTableCell>
-                      <StyledTableCell>{popupState.paid_at}</StyledTableCell>
-                    </TableRow>
-                    <StyledTableRow>
-                      <StyledTableCell>결제 금액</StyledTableCell>
-                      <StyledTableCell>{popupState.payment_amount} 원</StyledTableCell>
-                    </StyledTableRow>
-                    <TableRow>
-                      <StyledTableCell>결제 포인트</StyledTableCell>
-                      <StyledTableCell>{popupState.point_amount} 포인트</StyledTableCell>
-                    </TableRow>
-                    <StyledTableRow>
-                      <StyledTableCell>총 결제 금액</StyledTableCell>
-                      <StyledTableCell>{popupState.total_amount} 원</StyledTableCell>
-                    </StyledTableRow>
-                    <TableRow>
-                      <StyledTableCell style={{ fontWeight: 600 }}>처리자</StyledTableCell>
-                      <StyledTableCell style={{ fontWeight: 600 }}>
-                        {popupState.admin_userid}
-                      </StyledTableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </ContentsTable>
-            {/* 환불 */}
-            <RefundTable>
-              <TableContainer>
-                <Table size="small">
-                  {/* Table Head */}
-                  <TableHead>
-                    <TableRow>
-                      <RefundTableHead>환불 금액</RefundTableHead>
-                      <RefundTableHead>환불 포인트</RefundTableHead>
-                      <RefundTableHead>환불 비율</RefundTableHead>
-                    </TableRow>
-                  </TableHead>
-                  {/* Table Body */}
-                  <TableBody>
-                    <TableRow>
-                      <RefundTableCell>{calculedFee} 원</RefundTableCell>
-                      <RefundTableCell>{calculedPoint} 포인트</RefundTableCell>
-                      <RefundTableCell>
-                        <Select
-                          onChange={e => {
-                            console.log(e);
-                            setRate(e.target.value);
-                          }}
-                        >
-                          {rates.map((rate, idx) => (
-                            <Option key={idx}>{rate}</Option>
-                          ))}
-                        </Select>
-                      </RefundTableCell>
-                    </TableRow>
-                    <TableRow>
-                      <RefundTableCell colSpan={3}>
-                        <RemarkLabel>비고</RemarkLabel>
-                        <RemarkInput />
-                      </RefundTableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </RefundTable>
+            <PopupTableComponent
+              popupState={popupState}
+              calculedFee={calculedFee}
+              calculedPoint={calculedPoint}
+              setRate={setRate}
+              rates={rates}
+            />
+
             <BtnDiv>
               <RefundBtn
                 onClick={() => {
@@ -234,7 +143,7 @@ const RefundTable = styled.div`
   margin: 30px 0 10px;
 `;
 
-export const Select = styled.select`
+const Select = styled.select`
   width: 80px;
   height: 100%;
   padding: 0 9px;
@@ -246,8 +155,7 @@ export const Select = styled.select`
     cursor: pointer;
   }
 `;
-
-export const Option = styled.option``;
+const Option = styled.option``;
 
 const RemarkLabel = styled.label`
   margin-right: 10px;

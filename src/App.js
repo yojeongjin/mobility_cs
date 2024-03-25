@@ -9,8 +9,10 @@ import GlobalStyles from './styles/GlobalStyles';
 //routes
 import Sidebar from './components/Sidebar/Sidebar';
 import Signin from './routes/Signin';
-import Illegal from './routes/Illegal/Illegal';
-import IllegalPopup from './routes/Illegal/IllegalPopup';
+import Illegal from './routes/Time/Illegal/Illegal';
+import IllegalPopup from './routes/Time/Illegal/IllegalPopup';
+import Another from './routes/Time/Another/Another';
+import AnotherPopup from './routes/Time/Another/AnotherPopup';
 import Charge from './routes/Charge/Charge';
 import ChargePopup from './routes/Charge/ChargePopup';
 
@@ -23,6 +25,8 @@ function App() {
         <Routes>
           <Route path="/charge/popup/:idx" element={<ChargePopup />} />
           <Route path="/charge" element={<Charge />} />
+          <Route path="/another/popup/:idx" element={<AnotherPopup />} />
+          <Route path="/another" element={<Another />} />
           <Route path="/illegal/popup/:idx" element={<IllegalPopup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/" element={<Illegal />} />

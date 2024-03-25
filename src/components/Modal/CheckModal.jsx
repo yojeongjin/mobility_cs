@@ -92,8 +92,7 @@ const ModalBase = styled.div`
 const ModalInner = styled.div`
   background: #fff;
   width: 100%;
-  max-width: 320px;
-  // height: 300px;
+  max-width: 340px;
   border-radius: 5px;
   text-align: center;
 `;
@@ -119,7 +118,7 @@ const ModalInfo = styled.div`
   // background: #f6f7f9;
   background: #fafafa;
   padding: 15px 20px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 `;
 
 const InfoMenu = styled.ul``;

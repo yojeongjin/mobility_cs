@@ -65,7 +65,7 @@ export default function IllegalContainer() {
         <>
           <IllegalComponent
             openPopup={openPopup}
-            inform={inform}
+            totalInfo={inform}
             startPost={startPost}
             endPost={endPost}
             pageRange={pageRange}

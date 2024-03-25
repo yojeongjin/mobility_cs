@@ -6,7 +6,9 @@ import SearchContainer from '../../../container/Searchbox/SearchContainer';
 import TableComponent from '../../Table/TableComponent';
 
 export default function IllegalComponent(props) {
-  const { openPopup, inform, startPost, endPost, pageRange } = props;
+  const { openPopup, totalInfo, startPost, endPost, pageRange } = props;
+
+  const inform = totalInfo.filter(info => info.refund_reason === '부정주차');
 
   return (
     <>

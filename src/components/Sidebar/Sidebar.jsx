@@ -8,10 +8,12 @@ import { VscSignOut } from 'react-icons/vsc';
 export default function Sidebar() {
   const location = useLocation();
   const params = location.pathname.split('/')[3];
+  console.log(location);
 
   if (location.pathname === '/signin') return null;
   if (location.pathname === `/illegal/popup/${params}`) return null;
   if (location.pathname === `/charge/popup/${params}`) return null;
+  if (location.pathname === `/another/popup/${params}`) return null;
 
   return (
     <SidebarBase>
@@ -26,7 +28,9 @@ export default function Sidebar() {
               <Link to="/">
                 <SubItem isLocation={location.pathname === '/'}>부정주차</SubItem>
               </Link>
-              <SubItem>공사중·삭선</SubItem>
+              <Link to="/another">
+                <SubItem isLocation={location.pathname === '/another'}>공사중·삭선</SubItem>
+              </Link>
             </SubMenu>
           </MenuItem>
 
@@ -43,7 +47,7 @@ export default function Sidebar() {
           <MenuItem>
             <ItemH2>월주차</ItemH2>
             <SubMenu>
-              <SubItem>월주차 환불</SubItem>
+              <SubItem>월주차 현장요금</SubItem>
             </SubMenu>
           </MenuItem>
         </SideMenu>
