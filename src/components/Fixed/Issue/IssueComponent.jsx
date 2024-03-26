@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 // components
-import SearchContainer from '../../container/Searchbox/SearchContainer';
-import TableComponent from '../Table/TableComponent';
+import SearchContainer from '../../../container/Searchbox/SearchContainer';
+import TableComponent from '../../Table/TableComponent';
 
-export default function ChargeComponent(props) {
+export default function IssueComponent(props) {
   const { openPopup, inform, startPost, endPost, pageRange } = props;
 
   return (
     <>
-      <IllegalH1>현장요금 접수</IllegalH1>
+      <IllegalH1>만차·현장이슈</IllegalH1>
       {/* 검색 */}
       <SearchContainer type={'FIXED'} />
       {/* Table */}

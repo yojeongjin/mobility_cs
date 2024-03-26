@@ -7,10 +7,6 @@ import { setEnd, setStart } from '../../redux/modules/search';
 // hooks
 import useAuth from '../../hooks/useAuth';
 // components
-// import Main from '../../../components/Main/Main';
-// import Pagination from '../../../components/Pagination/Pagination';
-// import ChargeComponent from '../../../components/Fixed/ChargeComponent';
-
 import Main from '../../components/Main/Main';
 import Pagination from '../../components/Pagination/Pagination';
 import MonthlyComponent from '../../components/Monthly/MonthlyComponent';

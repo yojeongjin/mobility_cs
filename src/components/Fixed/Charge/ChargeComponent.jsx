@@ -5,14 +5,14 @@ import styled from 'styled-components';
 import SearchContainer from '../../../container/Searchbox/SearchContainer';
 import TableComponent from '../../Table/TableComponent';
 
-export default function IllegalComponent(props) {
+export default function ChargeComponent(props) {
   const { openPopup, inform, startPost, endPost, pageRange } = props;
 
   return (
     <>
-      <IllegalH1>부정주차 접수</IllegalH1>
+      <IllegalH1>현장요금 접수</IllegalH1>
       {/* 검색 */}
-      <SearchContainer type={'TIME'} />
+      <SearchContainer type={'FIXED'} />
       {/* Table */}
       <TableComponent
         openPopup={openPopup}
@@ -20,7 +20,7 @@ export default function IllegalComponent(props) {
         startPost={startPost}
         endPost={endPost}
         pageRange={pageRange}
-        type={'TIME'}
+        type={'FIXED'}
       />
     </>
   );

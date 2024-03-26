@@ -5,7 +5,7 @@ import { getInform } from '../../../redux/modules/inform';
 import { setStart, setEnd } from '../../../redux/modules/search';
 // hooks
 import useAuth from '../../../hooks/useAuth';
-
+// components
 import Main from '../../../components/Main/Main';
 import AnotherComponent from '../../../components/Time/Another/AnotherComponent';
 import Pagination from '../../../components/Pagination/Pagination';
@@ -13,7 +13,8 @@ import Pagination from '../../../components/Pagination/Pagination';
 export default function AnotherContainer() {
   const token = useAuth();
   const dispatch = useDispatch();
-  const inform = useSelector(state => state.inform.inform);
+  const totalInfo = useSelector(state => state.inform.inform);
+  const inform = totalInfo.filter(info => info.refund_reason !== '부정주차');
 
   // pagination state
   const [page, setPage] = useState(1); // 현재 페이지 수
@@ -63,7 +64,7 @@ export default function AnotherContainer() {
         <>
           <AnotherComponent
             openPopup={openPopup}
-            totalInfo={inform}
+            inform={inform}
             startPost={startPost}
             endPost={endPost}
             pageRange={pageRange}

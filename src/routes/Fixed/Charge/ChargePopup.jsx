@@ -1,6 +1,7 @@
 import React from 'react';
-import useAuth from '../../hooks/useAuth';
-import ChargePopupContainer from '../../container/Fixed/Charge/ChargePopupContainer';
+import useAuth from '../../../hooks/useAuth';
+
+import ChargePopupContainer from '../../../container/Fixed/Charge/ChargePopupContainer';
 
 export default function ChargePopup() {
   const token = useAuth();

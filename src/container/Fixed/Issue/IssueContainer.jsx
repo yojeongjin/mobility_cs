@@ -9,13 +9,13 @@ import useAuth from '../../../hooks/useAuth';
 // components
 import Main from '../../../components/Main/Main';
 import Pagination from '../../../components/Pagination/Pagination';
-import ChargeComponent from '../../../components/Fixed/Charge/ChargeComponent';
+import IssueComponent from '../../../components/Fixed/Issue/IssueComponent';
 
-export default function ChargeContainer() {
+export default function IssueContainer() {
   const token = useAuth();
   const dispatch = useDispatch();
   const totalInfo = useSelector(state => state.inform.inform);
-  const inform = totalInfo.filter(info => info.refund_reason === '현장 요금 발생');
+  const inform = totalInfo.filter(info => info.refund_reason !== '현장 요금 발생');
 
   // pagination state
   const [page, setPage] = useState(1); // 현재 페이지 수
@@ -49,9 +49,9 @@ export default function ChargeContainer() {
 
   // popup 새창 열기
   const openPopup = idx => {
-    const url = `http://localhost:3000/charge/popup/${idx}`;
-    const width = 1400;
-    const height = 600;
+    const url = `http://localhost:3000/issue/popup/${idx}`;
+    const width = 1000;
+    const height = 700;
 
     // 팝업을 부모 브라우저의 정중앙에 위치하도록함
     const left = window.screenX + (window.outerWidth - width) / 2;
@@ -64,7 +64,7 @@ export default function ChargeContainer() {
     <Main>
       {inform && (
         <>
-          <ChargeComponent
+          <IssueComponent
             openPopup={openPopup}
             inform={inform}
             startPost={startPost}

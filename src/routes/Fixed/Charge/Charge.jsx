@@ -1,7 +1,7 @@
 import React from 'react';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 
-import ChargeContainer from '../../container/Fixed/Charge/ChargeContainer';
+import ChargeContainer from '../../../container/Fixed/Charge/ChargeContainer';
 
 export default function Charge() {
   const token = useAuth();

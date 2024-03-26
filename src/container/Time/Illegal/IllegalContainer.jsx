@@ -14,7 +14,8 @@ import Pagination from '../../../components/Pagination/Pagination';
 export default function IllegalContainer() {
   const token = useAuth();
   const dispatch = useDispatch();
-  const inform = useSelector(state => state.inform.inform);
+  const totalInfo = useSelector(state => state.inform.inform);
+  const inform = totalInfo.filter(info => info.refund_reason === '부정주차');
 
   // pagination state
   const [page, setPage] = useState(1); // 현재 페이지 수
@@ -61,11 +62,11 @@ export default function IllegalContainer() {
 
   return (
     <Main>
-      {inform && (
+      {totalInfo && (
         <>
           <IllegalComponent
             openPopup={openPopup}
-            totalInfo={inform}
+            inform={inform}
             startPost={startPost}
             endPost={endPost}
             pageRange={pageRange}

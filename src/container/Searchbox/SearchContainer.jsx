@@ -10,6 +10,7 @@ import Search from '../../components/Searchbox/Search';
 
 export default function SearchContainer(props) {
   const { type } = props;
+
   const token = useAuth();
   const dispatch = useDispatch();
   const carNumRef = useRef(null);

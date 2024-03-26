@@ -10,7 +10,7 @@ export default function MonthlyComponent(props) {
 
   return (
     <>
-      <IllegalH1>현장요금 접수</IllegalH1>
+      <IllegalH1>월주차 현장요금 접수</IllegalH1>
       {/* 검색 */}
       <SearchContainer type={'MONTHLY'} />
       {/* Table */}

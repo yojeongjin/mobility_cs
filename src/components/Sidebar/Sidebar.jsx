@@ -13,6 +13,7 @@ export default function Sidebar() {
   if (location.pathname === `/illegal/popup/${params}`) return null;
   if (location.pathname === `/charge/popup/${params}`) return null;
   if (location.pathname === `/another/popup/${params}`) return null;
+  if (location.pathname === `/issue/popup/${params}`) return null;
 
   return (
     <SidebarBase>
@@ -39,7 +40,9 @@ export default function Sidebar() {
               <Link to="/charge">
                 <SubItem isLocation={location.pathname === '/charge'}>현장요금</SubItem>
               </Link>
-              <SubItem>만차·현장이슈</SubItem>
+              <Link to="/issue">
+                <SubItem isLocation={location.pathname === '/issue'}>만차·현장이슈</SubItem>
+              </Link>
             </SubMenu>
           </MenuItem>
 
@@ -97,7 +100,7 @@ const SideMenu = styled.ul`
 `;
 
 const MenuItem = styled.li`
-  margin: 25px 20px 15px;
+  margin: 20px 20px 15px;
   padding: 20px 10px 0;
   &:first-child {
     padding-top: 30px;
@@ -105,8 +108,9 @@ const MenuItem = styled.li`
 `;
 
 const ItemH2 = styled.h2`
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 20px;
 `;
 
 const SubMenu = styled.ul``;
@@ -114,9 +118,6 @@ const SubMenu = styled.ul``;
 const SubItem = styled.li`
   padding: 8px 0;
   color: ${props => (props.isLocation ? '#02ca2d' : '#aaa')};
-  &:first-child {
-    margin-top: 10px;
-  }
   &:hover {
     cursor: pointer;
     color: ${props => props.theme.primaryColor};
@@ -142,7 +143,7 @@ const SignoutBtn = styled.button`
   }
 `;
 
-export const SignOutIcon = styled(VscSignOut)`
+const SignOutIcon = styled(VscSignOut)`
   font-size: 15px;
   margin-left: 10px;
 `;

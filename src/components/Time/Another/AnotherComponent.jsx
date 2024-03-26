@@ -4,10 +4,8 @@ import SearchContainer from '../../../container/Searchbox/SearchContainer';
 import TableComponent from '../../Table/TableComponent';
 
 export default function AnotherComponent(props) {
-  const { openPopup, totalInfo, startPost, endPost, pageRange } = props;
-  const inform = totalInfo.filter(
-    info => info.refund_reason === '공사중' || info.refund_reason === '삭선',
-  );
+  const { openPopup, inform, startPost, endPost, pageRange } = props;
+
   return (
     <>
       <IllegalH1>공사중·삭선 접수</IllegalH1>

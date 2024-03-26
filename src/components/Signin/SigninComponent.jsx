@@ -9,6 +9,7 @@ export default function SigninComponent(props) {
 
   const idRef = useRef(null);
   const pwRef = useRef(null);
+  const [pw, setPw] = useState(null);
 
   const signinHandler = () => {
     const id = idRef.current.value;
@@ -21,8 +22,11 @@ export default function SigninComponent(props) {
     login(body);
   };
 
-  const [pw, setPw] = useState(null);
-  console.log(pw);
+  const handleOnKyePress = e => {
+    if (e.key === 'Enter') {
+      signinHandler();
+    }
+  };
 
   return (
     <SigninBase>
@@ -48,6 +52,7 @@ export default function SigninComponent(props) {
               placeholder="&nbsp;"
               ref={pwRef}
               onChange={e => setPw(e.target.value)}
+              onKeyDown={e => handleOnKyePress(e)}
             />
             <InputSpan>
               <PwIcon />

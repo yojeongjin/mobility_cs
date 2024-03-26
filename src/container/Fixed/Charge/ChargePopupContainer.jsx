@@ -4,7 +4,7 @@ import axios from 'axios';
 // hooks
 import useAuth from '../../../hooks/useAuth';
 // components
-import ChargePopupComponent from '../../../components/Fixed/ChargePopupComponent';
+import ChargePopupComponent from '../../../components/Fixed/Charge/ChargePopupComponent';
 
 export default function ChargePopupContainer() {
   const token = useAuth();
