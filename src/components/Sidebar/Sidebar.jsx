@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { signout } from '../../redux/modules/auth';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -6,6 +8,7 @@ import styled from 'styled-components';
 import { VscSignOut } from 'react-icons/vsc';
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
   const location = useLocation();
   const params = location.pathname.split('/')[3];
 
@@ -14,6 +17,10 @@ export default function Sidebar() {
   if (location.pathname === `/charge/popup/${params}`) return null;
   if (location.pathname === `/another/popup/${params}`) return null;
   if (location.pathname === `/issue/popup/${params}`) return null;
+
+  const logout = () => {
+    dispatch(signout());
+  };
 
   return (
     <SidebarBase>
@@ -57,7 +64,11 @@ export default function Sidebar() {
         </SideMenu>
 
         <BtnDiv>
-          <SignoutBtn>
+          <SignoutBtn
+            onClick={() => {
+              logout();
+            }}
+          >
             Logout
             <SignOutIcon />
           </SignoutBtn>
@@ -129,6 +140,11 @@ const BtnDiv = styled.div`
   padding-top: 20px;
 `;
 
+const SignOutIcon = styled(VscSignOut)`
+  font-size: 15px;
+  margin-left: 10px;
+`;
+
 const SignoutBtn = styled.button`
   background-color: rgba(255, 255, 255, 0.1);
   width: 100%;
@@ -140,10 +156,8 @@ const SignoutBtn = styled.button`
   color: #e0e0e0;
   &:hover {
     color: #fff;
+    ${SignOutIcon} {
+      color: ${props => props.theme.primaryColor};
+    }
   }
-`;
-
-const SignOutIcon = styled(VscSignOut)`
-  font-size: 15px;
-  margin-left: 10px;
 `;

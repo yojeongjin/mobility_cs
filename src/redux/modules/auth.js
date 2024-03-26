@@ -39,17 +39,18 @@ export default reducer;
 
 // saga
 
-export const { signin } = createActions('SIGNIN', { prefix });
+export const { signin, signout } = createActions('SIGNIN', 'SIGNOUT', { prefix });
 
 export function* authSaga() {
   yield takeEvery(`${prefix}/SIGNIN`, signinSaga);
+  yield takeEvery(`${prefix}/SIGNOUT`, signoutSaga);
 }
 
 async function signinAPI(reqData) {
   const res = await axios.post('http://223.130.140.159:1880/admin/login', reqData);
   return res.data;
 }
-
+// signin
 function* signinSaga(action) {
   try {
     yield put(pending());
@@ -62,5 +63,17 @@ function* signinSaga(action) {
   } catch (err) {
     yield put(fail('UNKNOWN_ERROR'));
     console.log(err);
+  }
+}
+
+// signout
+function* signoutSaga() {
+  try {
+    yield put(pending());
+    yield put(success(null));
+  } catch (error) {
+    yield put(fail(error));
+  } finally {
+    window.location.reload();
   }
 }

@@ -6,6 +6,8 @@ import { setEnd, setStart } from '../../redux/modules/search';
 
 // hooks
 import useAuth from '../../hooks/useAuth';
+import usePagination from '../../hooks/usePagination';
+
 // components
 import Main from '../../components/Main/Main';
 import Pagination from '../../components/Pagination/Pagination';
@@ -17,19 +19,18 @@ export default function MonthlyContainer() {
   const inform = useSelector(state => state.inform.inform);
 
   // pagination state
-  const [page, setPage] = useState(1); // 현재 페이지 수
-  const totalPost = inform.length;
-  const pageRange = 10; // 페이지당 보여줄 게시물 수
-  const btnRange = Math.ceil(totalPost / pageRange) <= 5 ? Math.ceil(totalPost / pageRange) : 5;
-
-  const currentSet = Math.ceil(page / btnRange); // 현재 버튼이 몇번째 세트인지 나타내는 수
-  const startPage = (currentSet - 1) * btnRange + 1; // 현재 보여질 버튼의 첫번째 수
-
-  const endPage = startPage + btnRange - 1; // 현재 보여질 끝 버튼의 수
-  const totalSet = Math.ceil(Math.ceil(totalPost / pageRange) / btnRange); // 전체 벼튼 세트 수
-
-  const startPost = (page - 1) * pageRange + 1; // 시작 게시물 번호
-  const endPost = startPost + pageRange - 1; // 끝 게시물 번호
+  const {
+    startPost,
+    endPost,
+    pageRange,
+    btnRange,
+    currentSet,
+    page,
+    startPage,
+    endPage,
+    totalSet,
+    changePage,
+  } = usePagination(inform);
 
   useEffect(() => {
     let body = {
@@ -74,7 +75,7 @@ export default function MonthlyContainer() {
             btnRange={btnRange}
             currentSet={currentSet}
             page={page}
-            setPage={setPage}
+            changePage={changePage}
             startPage={startPage}
             endPage={endPage}
             totalSet={totalSet}

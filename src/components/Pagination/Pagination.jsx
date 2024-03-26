@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Pagination(props) {
-  const { btnRange, startPage, currentSet, page, setPage } = props;
+  const { btnRange, startPage, currentSet, page, changePage } = props;
 
   return (
     <PaginationBase>
@@ -16,7 +16,7 @@ export default function Pagination(props) {
             .map((_, i) => (
               <PaginationItem
                 isActive={page === startPage + i}
-                onClick={() => setPage(startPage + i)}
+                onClick={() => changePage(startPage + i)}
               >
                 {startPage + i}
               </PaginationItem>
