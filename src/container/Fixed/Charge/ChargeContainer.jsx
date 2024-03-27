@@ -16,8 +16,8 @@ import ChargeComponent from '../../../components/Fixed/Charge/ChargeComponent';
 export default function ChargeContainer() {
   const token = useAuth();
   const dispatch = useDispatch();
-  const totalInfo = useSelector(state => state.inform.inform);
-  const inform = totalInfo.filter(info => info.refund_reason === '현장 요금 발생');
+  const inform = useSelector(state => state.inform.inform);
+  // const inform = totalInfo.filter(info => info.refund_reason === '현장 요금 발생');
 
   // pagination state
   const {
@@ -35,7 +35,8 @@ export default function ChargeContainer() {
 
   useEffect(() => {
     let body = {
-      parkingitem_type: 'FIXED',
+      // parkingitem_type: 'FIXED',
+      parkingitem_type: '',
       car_number: '',
       from: '',
       to: '',

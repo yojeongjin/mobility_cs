@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Pagination(props) {
-  const { btnRange, startPage, currentSet, page, changePage } = props;
+  const { endPage, totalSet, btnRange, startPage, currentSet, page, changePage } = props;
 
   return (
     <PaginationBase>
       <PaginationMenu>
         {currentSet !== undefined && currentSet > 1 && currentSet !== Infinity && (
-          <PaginationItem>이전</PaginationItem>
+          <PaginationItem onClick={() => changePage(startPage - 1)}>＜</PaginationItem>
         )}
         {btnRange !== undefined &&
           Array(btnRange)
@@ -21,6 +21,9 @@ export default function Pagination(props) {
                 {startPage + i}
               </PaginationItem>
             ))}
+        {totalSet > currentSet && currentSet !== Infinity && (
+          <PaginationItem onClick={() => changePage(endPage + 1)}>＞</PaginationItem>
+        )}
       </PaginationMenu>
     </PaginationBase>
   );

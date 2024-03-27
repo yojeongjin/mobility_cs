@@ -12,7 +12,7 @@ export default function IllegalComponent(props) {
     <>
       <IllegalH1>부정주차 접수</IllegalH1>
       {/* 검색 */}
-      <SearchContainer type={'TIME'} />
+      <SearchContainer inform={inform} type={'TIME'} />
       {/* Table */}
       <TableComponent
         openPopup={openPopup}

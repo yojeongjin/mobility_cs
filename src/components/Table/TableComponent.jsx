@@ -12,12 +12,16 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import Excel from '../Searchbox/Excel';
 
 export default function TableComponent(props) {
   const { openPopup, inform, startPost, endPost, pageRange, type } = props;
 
   return (
     <TableBase>
+      <DownloadBox>
+        <Excel inform={inform} />
+      </DownloadBox>
       <StyledTableContainer>
         <Grid>
           <Table size="small">
@@ -118,25 +122,32 @@ const TableBase = styled.div`
   min-height: 480px;
 `;
 
+const DownloadBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+`;
+
 const StyledTableContainer = styled(TableContainer)`
-  border-top: 1px solid #c8c8c8;
+  border-top: 1px solid #eceef0;
 `;
 
 const StyledTableCellHead = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
-    background-color: #fcfcfc;
+    background-color: #fbfcfc;
     font-weight: 500;
     height: 45px;
     letter-spacing: -0.5px;
     text-align: center;
+    // border-bottom: 1px solid #f4f5f6;
+    border-bottom: 1px solid #eceef0;
   }
 `;
 
 const StyledTableRow = styled(TableRow)`
   &:hover {
-    // background-color: #fbfbfb;
-    background-color: ${props => props.theme.primaryLight};
+    background-color: #f9fcfd;
     cursor: pointer;
   }
 `;
@@ -147,6 +158,7 @@ const StyledTableCell = styled(TableCell)`
     height: 45px;
     color: #333;
     text-align: center;
+    border-bottom: 1px solid #eceef0;
   }
 `;
 

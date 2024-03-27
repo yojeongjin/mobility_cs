@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 // components
 import CalendarContainer from '../../container/Searchbox/CalendarContainer';
+import Excel from './Excel';
 // icon
 import { IoSearchSharp } from 'react-icons/io5';
 
@@ -36,7 +37,8 @@ export default function Search(props) {
 const SearchContainer = styled.div`
   position: relative;
   display: flex;
-  margin: 40px 0 30px;
+  width: 1300px;
+  margin: 30px 0 0;
 `;
 
 const SearchBox = styled.div`
@@ -48,7 +50,7 @@ const SearchInput = styled.div`
   height: 35px;
   display: flex;
   align-items: center;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e0e1e4;
   border-radius: 5px;
 `;
 

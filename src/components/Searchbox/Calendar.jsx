@@ -104,7 +104,7 @@ const CalendarBox = styled.div`
   height: 35px;
   display: flex;
   align-items: center;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e0e1e4;
   border-radius: 5px;
   padding: 0 10px;
   color: #555;
@@ -122,13 +122,13 @@ const CalendarBox = styled.div`
     font-family: 'Pretendard';
     transform: translate(42px, 0px);
     will-change: transform;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e0e1e4;
   }
   .react-datepicker-popper .react-datepicker__triangle {
     // display: none;
     fill: #fff;
     color: transparent;
-    stroke: #e0e0e0;
+    stroke: #e0e1e4;
   }
   .react-datepicker__header {
     background: transparent;
@@ -276,12 +276,12 @@ const DateButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: 15px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e0e1e4;
   border-radius: 5px;
 `;
 
 const DateButton = styled.button`
-  border-right: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e1e4;
   padding: 10px 17px;
   color: #555;
   font-weight: 300;
