@@ -18,6 +18,7 @@ export default function AnotherPopupComponent(props) {
     checkItems,
     setCheckItems,
     setModalOpen,
+    cmtRef,
     downloadImg,
   } = props;
 
@@ -104,6 +105,7 @@ export default function AnotherPopupComponent(props) {
               calculedFee={calculedFee}
               calculedPoint={calculedPoint}
               setRate={setRate}
+              cmtRef={cmtRef}
               rates={rates}
             />
 
@@ -137,36 +139,6 @@ const PopupContainer = styled.div`
 
 const PopupContents = styled.div`
   flex: 1;
-`;
-
-const ContentsTable = styled.div``;
-
-const RefundTable = styled.div`
-  margin: 30px 0 10px;
-`;
-
-const Select = styled.select`
-  width: 80px;
-  height: 100%;
-  padding: 0 9px;
-  letter-spacing: -0.5px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  color: #555;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-const Option = styled.option``;
-
-const RemarkLabel = styled.label`
-  margin-right: 10px;
-`;
-const RemarkInput = styled.input`
-  border: 1px solid #ddd;
-  width: 80%;
-  height: 100%;
-  padding: 0 10px;
 `;
 
 const BtnDiv = styled.div`

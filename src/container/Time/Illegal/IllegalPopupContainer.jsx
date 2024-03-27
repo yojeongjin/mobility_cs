@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 // hooks
@@ -10,8 +10,9 @@ import CheckModal from '../../../components/Modal/CheckModal';
 export default function IllegalPopupContainer() {
   const token = useAuth();
   const params = useParams();
-  const rates = [100, 80];
 
+  const cmtRef = useRef(null);
+  const rates = [100, 80];
   const [rate, setRate] = useState('');
   const [popupState, setPopupState] = useState({});
   const [imgUrlArr, setImgUrlArr] = useState([]);
@@ -99,6 +100,7 @@ export default function IllegalPopupContainer() {
       order_id: popupState.order_id,
       refund_rate: rate,
       refund_reason: popupState.refund_reason,
+      refund_admin_comment: cmtRef.current.value,
       token: token,
     };
 
@@ -132,6 +134,7 @@ export default function IllegalPopupContainer() {
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
         downloadImg={downloadImg}
+        cmtRef={cmtRef}
       />
       {modalOpen && (
         <CheckModal

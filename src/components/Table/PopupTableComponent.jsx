@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 export default function PopupTableComponent(props) {
-  const { popupState, calculedFee, calculedPoint, setRate, rates } = props;
+  const { cmtRef, popupState, calculedFee, calculedPoint, setRate, rates } = props;
 
   return (
     <>
@@ -101,8 +101,17 @@ export default function PopupTableComponent(props) {
               </TableRow>
               <TableRow>
                 <RefundTableCell colSpan={3}>
-                  <RemarkLabel>비고</RemarkLabel>
-                  <RemarkInput />
+                  {popupState.order_state === 'REFUNDED' ? (
+                    <Remark>
+                      <RemarkLabel>비고</RemarkLabel>
+                      <RemarkSpan>{popupState.refund_admin_comment}</RemarkSpan>
+                    </Remark>
+                  ) : (
+                    <>
+                      <RemarkLabel>비고</RemarkLabel>
+                      <RemarkInput ref={cmtRef} />
+                    </>
+                  )}
                 </RefundTableCell>
               </TableRow>
             </TableBody>
@@ -140,6 +149,26 @@ const RemarkInput = styled.input`
   width: 80%;
   height: 100%;
   padding: 0 10px;
+`;
+
+const Remark = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: start;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  margin-top: 5px;
+`;
+
+const RemarkSpan = styled.span`
+  background: #fbfbfb;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  border: 1px solid #ececec;
 `;
 
 // Table

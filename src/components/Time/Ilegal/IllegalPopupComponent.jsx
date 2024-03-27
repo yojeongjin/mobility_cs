@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // material-ui
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { TableCell, TableRow } from '@mui/material';
 // icon
 import { IoCloudDownloadOutline } from 'react-icons/io5';
 import PopupTableComponent from '../../Table/PopupTableComponent';
@@ -18,6 +18,7 @@ export default function IllegalPopupComponent(props) {
     setCheckItems,
     setModalOpen,
     downloadImg,
+    cmtRef,
   } = props;
 
   const checkHandled = e => {
@@ -104,6 +105,7 @@ export default function IllegalPopupComponent(props) {
               calculedPoint={calculedPoint}
               setRate={setRate}
               rates={rates}
+              cmtRef={cmtRef}
             />
 
             <BtnDiv>
@@ -136,36 +138,6 @@ const PopupContainer = styled.div`
 
 const PopupContents = styled.div`
   flex: 1;
-`;
-
-const ContentsTable = styled.div``;
-
-const RefundTable = styled.div`
-  margin: 30px 0 10px;
-`;
-
-const Select = styled.select`
-  width: 80px;
-  height: 100%;
-  padding: 0 9px;
-  letter-spacing: -0.5px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  color: #555;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-const Option = styled.option``;
-
-const RemarkLabel = styled.label`
-  margin-right: 10px;
-`;
-const RemarkInput = styled.input`
-  border: 1px solid #ddd;
-  width: 80%;
-  height: 100%;
-  padding: 0 10px;
 `;
 
 const BtnDiv = styled.div`
@@ -318,60 +290,4 @@ const AgreeCheckInput = styled.input`
 
 const AgreeLabel = styled.label`
   cursor: pointer;
-`;
-
-// Table
-const StyledTableCellHead = styled(TableCell)`
-  && {
-    // background-color: ${props => props.theme.secondaryColor};
-    font-family: 'Pretendard', sans-serif;
-    font-weight: 500;
-    border-bottom: 1.5px solid black;
-    height: 45px;
-    // color: #fff;
-    letter-spacing: -1px;
-    // border: none;
-  }
-`;
-
-const StyledTableRow = styled(TableRow)`
-  && {
-    // background-color: ${props => props.theme.primaryLight};\
-    // background-color: #f8faff;
-    background-color: #fbfbfb;
-  }
-`;
-
-const StyledTableCell = styled(TableCell)`
-  && {
-    font-family: 'Pretendard', sans-serif;
-    height: 45px;
-    color: ${props => props.theme.fontColor};
-    // color: ${props => (props.isSubject ? '#aaa' : '#252525')};
-    border: none;
-  }
-`;
-
-const RefundTableHead = styled(TableCell)`
-  && {
-    // background-color: ${props => props.theme.secondaryColor};
-    font-family: 'Pretendard', sans-serif;
-    font-weight: 500;
-    height: 45px;
-    // color: #fff;
-    letter-spacing: -1px;
-    text-align: center;
-    // border: none;
-    border-bottom: 1.5px solid black;
-  }
-`;
-
-const RefundTableCell = styled(TableCell)`
-  && {
-    font-family: 'Pretendard', sans-serif;
-    height: 45px;
-    color: ${props => props.theme.fontColor};
-    border: none;
-    text-align: center;
-  }
 `;

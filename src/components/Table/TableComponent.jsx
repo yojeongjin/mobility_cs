@@ -3,51 +3,59 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 
 // material-ui
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import {
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 
 export default function TableComponent(props) {
   const { openPopup, inform, startPost, endPost, pageRange, type } = props;
 
-  console.log(type);
   return (
     <TableBase>
       <StyledTableContainer>
-        <Table size="small">
-          {/* Table Head */}
-          <TableHead>
-            <TableRow>
-              <StyledTableCellHead>No.</StyledTableCellHead>
-              <StyledTableCellHead>주차장명</StyledTableCellHead>
-              <StyledTableCellHead>차량정보</StyledTableCellHead>
-              <StyledTableCellHead>업로드시간</StyledTableCellHead>
-              {type === 'TIME' ? <StyledTableCellHead>증빙서류</StyledTableCellHead> : null}
-              <StyledTableCellHead>상태</StyledTableCellHead>
-            </TableRow>
-          </TableHead>
-          {/* Table Body */}
-          {inform.length === 0 ? (
-            <TableBody>
+        <Grid>
+          <Table size="small">
+            {/* Table Head */}
+            <TableHead>
               <TableRow>
-                <NoneTableCell colSpan={6}>검색 결과가 없습니다.</NoneTableCell>
+                <StyledTableCellHead>No.</StyledTableCellHead>
+                <StyledTableCellHead>주차장명</StyledTableCellHead>
+                <StyledTableCellHead>차량정보</StyledTableCellHead>
+                <StyledTableCellHead>업로드시간</StyledTableCellHead>
+                {/* {type === 'TIME' ? <StyledTableCellHead>증빙서류</StyledTableCellHead> : null} */}
+                <StyledTableCellHead>상태</StyledTableCellHead>
               </TableRow>
-            </TableBody>
-          ) : (
-            <TableBody>
-              {inform.slice(startPost - 1, endPost).map((info, idx) => {
-                return (
-                  <TableRow
-                    key={info.id}
-                    onClick={() => {
-                      openPopup(info.id);
-                    }}
-                  >
-                    <StyledTableCell>{inform.length - endPost + pageRange - idx}</StyledTableCell>
-                    <StyledTableCell>{info.parkinglot_name}</StyledTableCell>
-                    <StyledTableCell>{info.car_number}</StyledTableCell>
-                    <StyledTableCell>
-                      {dayjs(info.created_at).format('YYYY년 MM월 DD일 HH:mm')}
-                    </StyledTableCell>
-                    {type === 'TIME' ? (
+            </TableHead>
+            {/* Table Body */}
+            {inform.length === 0 ? (
+              <TableBody>
+                <TableRow>
+                  <NoneTableCell colSpan={6}>검색 결과가 없습니다.</NoneTableCell>
+                </TableRow>
+              </TableBody>
+            ) : (
+              <TableBody>
+                {inform.slice(startPost - 1, endPost).map((info, idx) => {
+                  return (
+                    <StyledTableRow
+                      key={info.id}
+                      onClick={() => {
+                        openPopup(info.id);
+                      }}
+                    >
+                      <StyledTableCell>{inform.length - endPost + pageRange - idx}</StyledTableCell>
+                      <StyledTableCell>{info.parkinglot_name}</StyledTableCell>
+                      <StyledTableCell>{info.car_number}</StyledTableCell>
+                      <StyledTableCell>
+                        {dayjs(info.created_at).format('YYYY년 MM월 DD일 HH:mm')}
+                      </StyledTableCell>
+                      {/* {type === 'TIME' ? (
                       <StyledTableCell>
                         {info.refund_data_uri === '' ? (
                           <Submit>
@@ -59,81 +67,86 @@ export default function TableComponent(props) {
                           </Submit>
                         )}
                       </StyledTableCell>
-                    ) : null}
+                    ) : null} */}
 
-                    {type === 'TIME' ? (
-                      <StyledTableCell>
-                        {info.order_state === 'REFUNDED' ? (
-                          <State>
-                            <StateLabel isRefunded={info.order_state === 'REFUNDED'}>
-                              완료
-                            </StateLabel>
-                          </State>
-                        ) : (
-                          <State>
-                            <StateLabel isRefunded={info.order_state === 'REFUNDED'}>
-                              대기
-                            </StateLabel>
-                          </State>
-                        )}
-                      </StyledTableCell>
-                    ) : (
-                      <StyledTableCell>
-                        {info.refund_state === '접수완료' ? (
-                          <State>
-                            <StateLabel isRefunded={info.refund_state === '접수완료'}>
-                              완료
-                            </StateLabel>
-                          </State>
-                        ) : (
-                          <State>
-                            <StateLabel isRefunded={info.refund_state === '접수완료'}>
-                              대기
-                            </StateLabel>
-                          </State>
-                        )}
-                      </StyledTableCell>
-                    )}
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          )}
-        </Table>
+                      {type === 'TIME' ? (
+                        <StyledTableCell>
+                          {info.order_state === 'REFUNDED' ? (
+                            <State>
+                              <StateLabel isRefunded={info.order_state === 'REFUNDED'}>
+                                완료
+                              </StateLabel>
+                            </State>
+                          ) : (
+                            <State>
+                              <StateLabel isRefunded={info.order_state === 'REFUNDED'}>
+                                대기
+                              </StateLabel>
+                            </State>
+                          )}
+                        </StyledTableCell>
+                      ) : (
+                        <StyledTableCell>
+                          {info.refund_state === '접수완료' ? (
+                            <State>
+                              <StateLabel isRefunded={info.refund_state === '접수완료'}>
+                                완료
+                              </StateLabel>
+                            </State>
+                          ) : (
+                            <State>
+                              <StateLabel isRefunded={info.refund_state === '접수완료'}>
+                                대기
+                              </StateLabel>
+                            </State>
+                          )}
+                        </StyledTableCell>
+                      )}
+                    </StyledTableRow>
+                  );
+                })}
+              </TableBody>
+            )}
+          </Table>
+        </Grid>
       </StyledTableContainer>
     </TableBase>
   );
 }
 
 const TableBase = styled.div`
-  background-color: #fff;
   min-height: 480px;
 `;
 
 const StyledTableContainer = styled(TableContainer)`
-  border-top: 1.5px solid #c8c8c8;
-  padding: 3px 0;
+  border-top: 1px solid #c8c8c8;
 `;
 
 const StyledTableCellHead = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
+    background-color: #fcfcfc;
     font-weight: 500;
-    border-bottom: 1px solid #ddd;
-    letter-spacing: -1px;
+    height: 45px;
+    letter-spacing: -0.5px;
     text-align: center;
+  }
+`;
+
+const StyledTableRow = styled(TableRow)`
+  &:hover {
+    // background-color: #fbfbfb;
+    background-color: ${props => props.theme.primaryLight};
+    cursor: pointer;
   }
 `;
 
 const StyledTableCell = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
-    height: 40px;
+    height: 45px;
     color: #333;
     text-align: center;
-  }
-  &:hover {
-    cursor: pointer;
   }
 `;
 
@@ -171,26 +184,5 @@ const StateLabel = styled.div`
   width: 57px;
   text-align: center;
   padding: 6px 0;
-  color: ${props => (props.isRefunded ? '#2CC52C' : '#FCD051')};
-`;
-
-const Submit = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const SubmitLabel = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  color: ${props => (props.isSubmit ? '#fe907e' : '#66AEF9')};
-  &:before {
-    background-color: ${props => (props.isSubmit ? '#fe907e' : '#66AEF9')};
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    margin-right: 6px;
-  }
+  color: ${props => (props.isRefunded ? '#2CC52C' : '#ff7761')};
 `;

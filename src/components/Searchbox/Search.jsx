@@ -36,7 +36,7 @@ export default function Search(props) {
 const SearchContainer = styled.div`
   position: relative;
   display: flex;
-  margin: 50px 0 30px;
+  margin: 40px 0 30px;
 `;
 
 const SearchBox = styled.div`
@@ -68,10 +68,6 @@ const Input = styled.input`
   height: 100%;
   margin-left: 10px;
   transition: width 0.4s;
-  // &:focus {
-  //   // border: 1px solid #669900;
-  //   width: 250px;
-  // }
 `;
 
 const SearchBtn = styled.button`

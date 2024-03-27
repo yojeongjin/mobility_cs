@@ -25,9 +25,11 @@ export default function Sidebar() {
   return (
     <SidebarBase>
       <Inner>
-        <LogoDiv>
-          <Logo src={`${process.env.PUBLIC_URL}/logo.png`} alt="로고" />
-        </LogoDiv>
+        <Link to="/">
+          <LogoDiv>
+            <Logo src={`${process.env.PUBLIC_URL}/logo.png`} alt="로고" />
+          </LogoDiv>
+        </Link>
         <SideMenu>
           <MenuItem>
             <ItemH2>공유주차</ItemH2>

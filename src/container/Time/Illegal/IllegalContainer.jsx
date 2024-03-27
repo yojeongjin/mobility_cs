@@ -12,6 +12,7 @@ import usePagination from '../../../hooks/usePagination';
 import Main from '../../../components/Main/Main';
 import IllegalComponent from '../../../components/Time/Ilegal/IllegalComponent';
 import Pagination from '../../../components/Pagination/Pagination';
+import LoadingComponent from '../../../components/Loading/LoadingComponent';
 
 export default function IllegalContainer() {
   const token = useAuth();

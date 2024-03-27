@@ -62,7 +62,7 @@ export default function SigninComponent(props) {
         </InputWrapper>
         {/* button */}
         <SigninBtn
-          disabled={pw === null}
+          disabled={pw === null || pw === ''}
           onClick={() => {
             signinHandler();
           }}
