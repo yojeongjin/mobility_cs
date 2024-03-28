@@ -65,17 +65,15 @@ export default function IllegalPopupContainer() {
       await axios
         .get(urlArr[i], {
           responseType: 'blob',
-          headers: {
-            'Content-type': 'image/jpeg',
-          },
         })
         .then(res => {
           console.log(res);
           const url = window.URL.createObjectURL(new Blob([res.data], { type: 'image/jpeg' })); // blob 객체 생성 및 url 생성
           const a = document.createElement('a'); // a태그 생성
+          console.log(url);
 
           a.href = url; // url 연결
-          a.download = `${popupState.parkinglot_name}(${popupState.car_number})-${i + 1}.jpeg`; // 파일명 설정
+          a.download = `${popupState.parkinglot_name}(${popupState.car_number})-${i + 1}`; // 파일명 설정
 
           document.body.appendChild(a);
           a.click();
