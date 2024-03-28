@@ -29,6 +29,7 @@ export default function AnotherContainer() {
     startPage,
     endPage,
     totalSet,
+    totalPage,
     changePage,
   } = usePagination(inform);
 
@@ -77,6 +78,7 @@ export default function AnotherContainer() {
             startPage={startPage}
             endPage={endPage}
             totalSet={totalSet}
+            totalPage={totalPage}
             changePage={changePage}
           />
         </>

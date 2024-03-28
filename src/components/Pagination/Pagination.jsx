@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Pagination(props) {
-  const { endPage, totalSet, btnRange, startPage, currentSet, page, changePage } = props;
+  const { totalPage, endPage, totalSet, btnRange, startPage, currentSet, page, changePage } = props;
 
   return (
     <PaginationBase>
@@ -13,14 +13,17 @@ export default function Pagination(props) {
         {btnRange !== undefined &&
           Array(btnRange)
             .fill(startPage)
-            .map((_, i) => (
-              <PaginationItem
-                isActive={page === startPage + i}
-                onClick={() => changePage(startPage + i)}
-              >
-                {startPage + i}
-              </PaginationItem>
-            ))}
+            .map(
+              (_, i) =>
+                startPage + i <= totalPage && (
+                  <PaginationItem
+                    isActive={page === startPage + i}
+                    onClick={() => changePage(startPage + i)}
+                  >
+                    {startPage + i}
+                  </PaginationItem>
+                ),
+            )}
         {totalSet > currentSet && currentSet !== Infinity && (
           <PaginationItem onClick={() => changePage(endPage + 1)}>＞</PaginationItem>
         )}

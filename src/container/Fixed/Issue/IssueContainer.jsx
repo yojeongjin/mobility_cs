@@ -30,6 +30,8 @@ export default function IssueContainer() {
     startPage,
     endPage,
     totalSet,
+    totalPage,
+
     changePage,
   } = usePagination(inform);
 
@@ -80,6 +82,7 @@ export default function IssueContainer() {
             startPage={startPage}
             endPage={endPage}
             totalSet={totalSet}
+            totalPage={totalPage}
           />
         </>
       )}

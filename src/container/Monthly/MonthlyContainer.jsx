@@ -29,6 +29,7 @@ export default function MonthlyContainer() {
     startPage,
     endPage,
     totalSet,
+    totalPage,
     changePage,
   } = usePagination(inform);
 
@@ -79,6 +80,7 @@ export default function MonthlyContainer() {
             startPage={startPage}
             endPage={endPage}
             totalSet={totalSet}
+            totalPage={totalPage}
           />
         </>
       )}
