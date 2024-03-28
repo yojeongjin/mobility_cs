@@ -50,7 +50,7 @@ export default function AnotherContainer() {
 
   // popup 새창 열기
   const openPopup = idx => {
-    const url = `http://localhost:3000/another/popup/${idx}`;
+    const url = `http://223.130.140.159:88/another/popup/${idx}`;
     const width = 1400;
     const height = 770;
 

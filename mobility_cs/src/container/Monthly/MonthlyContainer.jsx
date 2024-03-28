@@ -50,7 +50,7 @@ export default function MonthlyContainer() {
 
   // popup 새창 열기
   const openPopup = idx => {
-    const url = `http://localhost:3000/charge/popup/${idx}`;
+    const url = `http://223.130.140.159:88/charge/popup/${idx}`;
     const width = 1400;
     const height = 600;
 
