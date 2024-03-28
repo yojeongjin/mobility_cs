@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
 
 const path = require('path')
@@ -8,6 +9,7 @@ const port = 3000;
 
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './mobility_cs/build')));
 
 app.use(cors());
