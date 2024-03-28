@@ -89,7 +89,6 @@ export default function PopupTableComponent(props) {
                 <RefundTableCell>
                   <Select
                     onChange={e => {
-                      console.log(e);
                       setRate(e.target.value);
                     }}
                   >

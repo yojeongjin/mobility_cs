@@ -6,8 +6,6 @@ import IllegalContainer from '../../../container/Time/Illegal/IllegalContainer';
 export default function Illegal() {
   const token = useAuth();
 
-  console.log(token);
-
   if (token === null) {
     return window.location.replace('/signin');
   }

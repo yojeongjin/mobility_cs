@@ -6,7 +6,6 @@ export default function usePagination(inform) {
   const pageRange = 10; // 페이지당 보여줄 게시물 수
   const totalPost = inform.length; // 총 게시물 수
   const totalPage = Math.ceil(totalPost / pageRange); // 총 페이지 개수
-  console.log(totalPage);
 
   const btnRange = Math.ceil(totalPost / pageRange) <= 5 ? Math.ceil(totalPost / pageRange) : 5;
   const currentSet = Math.ceil(page / btnRange); // 현재 버튼이 몇번째 세트인지 나타내는 수

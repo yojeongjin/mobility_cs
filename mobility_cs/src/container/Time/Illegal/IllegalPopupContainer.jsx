@@ -67,6 +67,7 @@ export default function IllegalPopupContainer() {
           responseType: 'blob',
         })
         .then(res => {
+          console.log(res);
           const url = window.URL.createObjectURL(new Blob([res.data], { type: 'image/jpeg' })); // blob 객체 생성 및 url 생성
           const a = document.createElement('a'); // a태그 생성
 
