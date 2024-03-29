@@ -61,7 +61,6 @@ export default function IllegalPopupContainer() {
     if (checkItems.length === 0) return alert('다운로드 할 사진을 선택해주세요.');
     const urlArr = getParams();
 
-    console.log(urlArr);
     for (let i = 0; i < urlArr.length; i++) {
       await axios
         .get(urlArr[i], {
@@ -88,19 +87,10 @@ export default function IllegalPopupContainer() {
     }
   };
 
-  // const getParams = () => {
-  //   let arr = [];
-  //   for (const item of checkItems) {
-  //     arr.push(imgUrlArr[item].split('3000')[1]);
-  //   }
-
-  //   return arr;
-  // };
-
   const getParams = () => {
     let arr = [];
     for (const item of checkItems) {
-      arr.push(imgUrlArr[item]);
+      arr.push(imgUrlArr[item].split('3000')[1]);
     }
 
     return arr;
