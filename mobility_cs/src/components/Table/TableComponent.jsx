@@ -119,7 +119,7 @@ export default function TableComponent(props) {
 }
 
 const TableBase = styled.div`
-  min-height: 480px;
+  min-height: 500px;
 `;
 
 const DownloadBox = styled.div`

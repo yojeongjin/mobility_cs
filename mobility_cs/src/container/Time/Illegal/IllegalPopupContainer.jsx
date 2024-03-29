@@ -65,6 +65,9 @@ export default function IllegalPopupContainer() {
       await axios
         .get(urlArr[i], {
           responseType: 'blob',
+          headers: {
+            'Content-Type': 'image/jpeg',
+          },
         })
         .then(res => {
           console.log(res);
