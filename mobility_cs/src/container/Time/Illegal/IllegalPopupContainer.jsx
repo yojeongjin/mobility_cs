@@ -61,19 +61,16 @@ export default function IllegalPopupContainer() {
     if (checkItems.length === 0) return alert('다운로드 할 사진을 선택해주세요.');
     const urlArr = getParams();
 
+    console.log(urlArr);
     for (let i = 0; i < urlArr.length; i++) {
       await axios
         .get(urlArr[i], {
           responseType: 'blob',
-          headers: {
-            'Content-Type': 'image/jpeg',
-          },
         })
         .then(res => {
           console.log(res);
           const url = window.URL.createObjectURL(new Blob([res.data], { type: 'image/jpeg' })); // blob 객체 생성 및 url 생성
           const a = document.createElement('a'); // a태그 생성
-          console.log(url);
 
           a.href = url; // url 연결
           a.download = `${popupState.parkinglot_name}(${popupState.car_number})-${i + 1}`; // 파일명 설정
@@ -91,10 +88,19 @@ export default function IllegalPopupContainer() {
     }
   };
 
+  // const getParams = () => {
+  //   let arr = [];
+  //   for (const item of checkItems) {
+  //     arr.push(imgUrlArr[item].split('3000')[1]);
+  //   }
+
+  //   return arr;
+  // };
+
   const getParams = () => {
     let arr = [];
     for (const item of checkItems) {
-      arr.push(imgUrlArr[item].split('3000')[1]);
+      arr.push(imgUrlArr[item]);
     }
 
     return arr;
