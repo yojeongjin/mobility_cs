@@ -76,7 +76,7 @@ export default function ChargePopupContainer() {
   const getParams = () => {
     let arr = [];
     for (const item of checkItems) {
-      arr.push(imgUrlArr[item].split('3000')[1]);
+      arr.push(imgUrlArr[item]);
     }
 
     return arr;
