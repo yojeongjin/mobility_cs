@@ -12,7 +12,6 @@ export default function Sidebar() {
   const location = useLocation();
   const params = location.pathname.split('/')[3];
 
-  if (location.pathname === '/signin') return null;
   if (location.pathname === `/illegal/popup/${params}`) return null;
   if (location.pathname === `/charge/popup/${params}`) return null;
   if (location.pathname === `/another/popup/${params}`) return null;
