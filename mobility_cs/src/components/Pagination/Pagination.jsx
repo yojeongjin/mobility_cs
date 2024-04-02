@@ -52,9 +52,7 @@ const PaginationItem = styled.li`
   height: 30px;
   margin-right: 15px;
   cursor: pointer;
-  background: ${props => (props.isActive ? '#252525' : 'none')};
-  border-radius: ${props => (props.isActive ? '50%' : '0')};
-  color: ${props => (props.isActive ? '#fff' : '#252525')};
+  color: ${props => (props.isActive ? '#02ca2d' : '#c6c6c6')};
 
   &:hover {
     background: ${props => props.theme.primaryColor};

@@ -73,6 +73,14 @@ export default function IllegalContainer() {
             startPost={startPost}
             endPost={endPost}
             pageRange={pageRange}
+            btnRange={btnRange}
+            currentSet={currentSet}
+            page={page}
+            changePage={changePage}
+            startPage={startPage}
+            endPage={endPage}
+            totalSet={totalSet}
+            totalPage={totalPage}
           />
           <Pagination
             btnRange={btnRange}

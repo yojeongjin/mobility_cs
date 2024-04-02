@@ -135,7 +135,7 @@ const StyledTableContainer = styled(TableContainer)`
 const StyledTableCellHead = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
-    background-color: #fbfcfc;
+    // background-color: #fbfcfc;
     font-weight: 500;
     height: 45px;
     letter-spacing: -0.5px;
