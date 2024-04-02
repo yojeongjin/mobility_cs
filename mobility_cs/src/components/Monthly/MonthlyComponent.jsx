@@ -12,7 +12,7 @@ export default function MonthlyComponent(props) {
     <>
       <IllegalH1>월주차 현장요금 접수</IllegalH1>
       {/* 검색 */}
-      <SearchContainer type={'MONTHLY'} />
+      <SearchContainer inform={inform} type={'MONTHLY'} />
       {/* Table */}
       <TableComponent
         openPopup={openPopup}

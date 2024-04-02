@@ -9,7 +9,7 @@ import useAuth from '../../hooks/useAuth';
 import Search from '../../components/Searchbox/Search';
 
 export default function SearchContainer(props) {
-  const { type } = props;
+  const { inform, type } = props;
 
   const token = useAuth();
   const dispatch = useDispatch();
@@ -39,6 +39,11 @@ export default function SearchContainer(props) {
   };
 
   return (
-    <Search carNumRef={carNumRef} searchInfo={searchInfo} handleOnKeyPress={handleOnKeyPress} />
+    <Search
+      inform={inform}
+      carNumRef={carNumRef}
+      searchInfo={searchInfo}
+      handleOnKeyPress={handleOnKeyPress}
+    />
   );
 }

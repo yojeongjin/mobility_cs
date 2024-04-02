@@ -12,16 +12,12 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import Excel from '../Searchbox/Excel';
 
 export default function TableComponent(props) {
   const { openPopup, inform, startPost, endPost, pageRange, type } = props;
 
   return (
     <TableBase>
-      <DownloadBox>
-        <Excel inform={inform} />
-      </DownloadBox>
       <StyledTableContainer>
         <Grid>
           <Table size="small">
@@ -120,28 +116,20 @@ export default function TableComponent(props) {
 
 const TableBase = styled.div`
   min-height: 500px;
-`;
-
-const DownloadBox = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
+  // border: 1px solid black;
 `;
 
 const StyledTableContainer = styled(TableContainer)`
-  border-top: 1px solid #eceef0;
+  border-top: 1px solid ${props => props.theme.secondaryColor};
 `;
 
 const StyledTableCellHead = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
-    // background-color: #fbfcfc;
     font-weight: 500;
-    height: 45px;
+    height: 50px;
     letter-spacing: -0.5px;
-    text-align: center;
-    // border-bottom: 1px solid #f4f5f6;
-    border-bottom: 1px solid #eceef0;
+    border-bottom: 1px solid #dfe3e9;
   }
 `;
 
@@ -155,10 +143,9 @@ const StyledTableRow = styled(TableRow)`
 const StyledTableCell = styled(TableCell)`
   && {
     font-family: 'Pretendard', sans-serif;
-    height: 45px;
+    height: 48px;
     color: #333;
-    text-align: center;
-    border-bottom: 1px solid #eceef0;
+    border-bottom: 1px solid #ebecf0;
   }
 `;
 
@@ -186,8 +173,8 @@ export const ApplyBtn = styled.button`
 
 const State = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
 `;
 
 const StateLabel = styled.div`

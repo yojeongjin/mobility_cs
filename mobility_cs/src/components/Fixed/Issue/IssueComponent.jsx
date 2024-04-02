@@ -12,7 +12,7 @@ export default function IssueComponent(props) {
     <>
       <IllegalH1>만차·현장이슈</IllegalH1>
       {/* 검색 */}
-      <SearchContainer type={'FIXED'} />
+      <SearchContainer inform={inform} type={'FIXED'} />
       {/* Table */}
       <TableComponent
         openPopup={openPopup}

@@ -9,7 +9,7 @@ export default function AnotherComponent(props) {
   return (
     <>
       <IllegalH1>공사중·삭선 접수</IllegalH1>
-      <SearchContainer type={'TIME'} />
+      <SearchContainer inform={inform} type={'TIME'} />
       <TableComponent
         openPopup={openPopup}
         inform={inform}

@@ -8,14 +8,12 @@ import Excel from './Excel';
 import { IoSearchSharp } from 'react-icons/io5';
 
 export default function Search(props) {
-  const { carNumRef, searchInfo, handleOnKeyPress } = props;
+  const { carNumRef, searchInfo, handleOnKeyPress, inform } = props;
 
   return (
     <SearchContainer>
       <SearchBox>
         <CalendarContainer />
-      </SearchBox>
-      <SearchBox>
         <SearchInput>
           <InputLabel htmlFor="searchInput">
             <SearchIcon />
@@ -30,6 +28,10 @@ export default function Search(props) {
           </SearchBtn>
         </SearchInput>
       </SearchBox>
+
+      <DownloadBox>
+        <Excel inform={inform} />
+      </DownloadBox>
     </SearchContainer>
   );
 }
@@ -37,8 +39,9 @@ export default function Search(props) {
 const SearchContainer = styled.div`
   position: relative;
   display: flex;
-  width: 1300px;
-  margin: 30px 0 0;
+  justify-content: space-between;
+  width: 1350px;
+  margin: 30px 0 15px;
 `;
 
 const SearchBox = styled.div`
@@ -50,6 +53,7 @@ const SearchInput = styled.div`
   height: 35px;
   display: flex;
   align-items: center;
+  margin-left: 14px;
   border: 1px solid #e0e1e4;
   border-radius: 5px;
 `;
@@ -69,7 +73,7 @@ const Input = styled.input`
   width: 200px;
   height: 100%;
   margin-left: 10px;
-  transition: width 0.4s;
+  // transition: width 0.4s;
 `;
 
 const SearchBtn = styled.button`
@@ -83,3 +87,5 @@ const SearchBtn = styled.button`
     background-color: ${props => props.theme.primaryColor};
   }
 `;
+
+const DownloadBox = styled.div``;
