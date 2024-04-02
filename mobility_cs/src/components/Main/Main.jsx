@@ -14,5 +14,5 @@ const MainBase = styled.main`
   right: 0;
   width: calc(var(--vw, 1vw) * 100 - 230px);
   height: 100%;
-  padding: 40px;
+  padding: 50px 40px;
 `;

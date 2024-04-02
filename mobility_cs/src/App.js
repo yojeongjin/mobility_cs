@@ -8,7 +8,6 @@ import GlobalStyles from './styles/GlobalStyles';
 
 //routes
 import PrivateRoute from './routes/PrivateRoute';
-import Sidebar from './components/Sidebar/Sidebar';
 import Signin from './routes/Signin';
 import Illegal from './routes/Time/Illegal/Illegal';
 import IllegalPopup from './routes/Time/Illegal/IllegalPopup';

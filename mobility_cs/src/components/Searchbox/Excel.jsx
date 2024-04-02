@@ -33,7 +33,7 @@ export default function Excel(props) {
       }}
     >
       <ExcelIcon />
-      엑셀 다운로드
+      다운로드
     </ExcelBtn>
   );
 }
@@ -41,15 +41,17 @@ export default function Excel(props) {
 const ExcelIcon = styled(TfiDownload)`
   font-size: 15px;
   margin-right: 8px;
-  font-size: 13px;
+  font-size: 12px;
 `;
 
 const ExcelBtn = styled.button`
+  height: 38px;
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 0 16px;
   border-radius: 5px;
-  color: #555;
+  color: #808080;
+  border: 1px solid #dfe3e9;
   &:hover {
     background-color: #fafafa;
     color: ${props => props.theme.primaryDark};

@@ -27,51 +27,44 @@ export default function CheckModal(props) {
   return (
     <ModalBase>
       <ModalInner ref={outside}>
-        <ModalHead>
-          <ModalH3>환불 내역</ModalH3>
-          <P>💰 확인을 누르시면 다음 내역이 환불됩니다.</P>
-        </ModalHead>
+        <ModalH2>환불내역</ModalH2>
 
         <ModalInfo>
           <InfoMenu>
             <InfoItem>
-              <ItemName>차량 번호</ItemName>
+              <ItemName>차량번호</ItemName>
               <ItemContent>{carNumber}</ItemContent>
             </InfoItem>
-
             <InfoItem>
-              <ItemName>환불 비율</ItemName>
+              <ItemName>환불비율</ItemName>
               <ItemContent>{rate}%</ItemContent>
             </InfoItem>
-
             <InfoItem>
-              <ItemName>환불 금액</ItemName>
+              <ItemName>환불금액</ItemName>
               <ItemContent>{calculedFee}원</ItemContent>
             </InfoItem>
-
             <InfoItem>
-              <ItemName>환불 포인트</ItemName>
+              <ItemName>환불포인트</ItemName>
               <ItemContent>{calculedPoint}포인트</ItemContent>
             </InfoItem>
           </InfoMenu>
         </ModalInfo>
 
         <BtnContainer>
-          <CancelBtn
+          <CloseBtn
             onClick={() => {
               onCloseModal();
             }}
           >
             닫기
-          </CancelBtn>
-
-          <CheckBtn
+          </CloseBtn>
+          <ApplyBtn
             onClick={() => {
               refundFee();
             }}
           >
-            확인
-          </CheckBtn>
+            환불하기
+          </ApplyBtn>
         </BtnContainer>
       </ModalInner>
     </ModalBase>
@@ -92,33 +85,21 @@ const ModalBase = styled.div`
 const ModalInner = styled.div`
   background: #fff;
   width: 100%;
-  max-width: 340px;
+  padding: 35px 40px 30px;
+  max-width: 500px;
   border-radius: 5px;
-  text-align: center;
 `;
 
-const ModalHead = styled.div`
-  margin: 25px 0 20px;
-  line-height: 1.7;
-`;
-
-const ModalH3 = styled.h3`
+const ModalH2 = styled.h2`
   font-size: 20px;
   font-weight: 500;
-`;
-
-const P = styled.p`
-  font-size: 14px;
-  font-weight: 300;
-  letter-spacing: -0.4px;
-  color: #757575;
+  margin-bottom: 13px;
 `;
 
 const ModalInfo = styled.div`
-  // background: #f6f7f9;
-  background: #fafafa;
-  padding: 15px 20px;
   margin-bottom: 30px;
+  padding-top: 13px;
+  border-top: 1px solid #ebecf0;
 `;
 
 const InfoMenu = styled.ul``;
@@ -126,8 +107,7 @@ const InfoMenu = styled.ul``;
 const InfoItem = styled.li`
   display: flex;
   justify-content: space-between;
-  line-height: 1.8;
-  font-size: 14px;
+  line-height: 2;
 `;
 
 const ItemName = styled.h4`
@@ -138,20 +118,25 @@ const ItemContent = styled.span`
   color: #333;
 `;
 
-const BtnContainer = styled.div``;
-
-const CheckBtn = styled.button`
-  background-color: ${props => props.theme.primaryColor};
-  width: 70%;
-  height: 55px;
-  color: #fff;
-  border-radius: 0 0 5px 0;
+const BtnContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
-const CancelBtn = styled.button`
-  background-color: ${props => props.theme.secondaryColor};
-  width: 30%;
-  height: 55px;
+const ApplyBtn = styled.button`
+  background-color: ${props => props.theme.primaryColor};
+  height: 40px;
+  padding: 0 36px;
+  border-radius: 20px;
   color: #fff;
-  border-radius: 0 0 0 5px;
+  font-size: 15px;
+`;
+
+const CloseBtn = styled(ApplyBtn)`
+  background-color: transparent;
+  color: ${props => props.theme.fontColor};
+  margin-right: 10px;
+  &:hover {
+    background-color: #ebebeb;
+  }
 `;
