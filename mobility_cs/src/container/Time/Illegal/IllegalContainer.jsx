@@ -47,7 +47,7 @@ export default function IllegalContainer() {
     // 날짜 변경
     dispatch(setStart(new Date()));
     dispatch(setEnd(new Date()));
-  }, [inform]);
+  }, []);
 
   // popup 새창 열기
   const openPopup = idx => {
@@ -63,6 +63,7 @@ export default function IllegalContainer() {
     window.open(url, '_blank', `width=${width},height=${height},left=${left},top=${top}`);
   };
 
+  console.log('dd');
   return (
     <Main>
       {totalInfo && (
