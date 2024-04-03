@@ -5,7 +5,8 @@ export default function Policy() {
   return (
     <PolicyBase>
       <PolicyHeading>
-        <PolicyH1>환불 정책</PolicyH1>
+        <Logo src={`${process.env.PUBLIC_URL}/logo.png`} alt="로고" />
+
         <PolicyP>
           당사의 환불에 대한 정책은 예약 기반의 서비스를 제공하므로 취소시에 환불수수료가
           발생하오며, 상품권 유형별 환불은 아래 조건에 해당되는 경우에만 가능합니다.
@@ -44,19 +45,18 @@ const PolicyBase = styled.div`
   min-width: 280px;
   height: calc(var(--vh, 1vh) * 100);
   margin: 0 auto;
-  padding: 20px 25px;
-  color: #383e47;
+  padding: 25px 20px;
+  overflow-y: scroll;
 `;
 
 const PolicyHeading = styled.div`
   margin: 0 0 30px;
 `;
 
-const PolicyH1 = styled.h1`
-  font-size: 24px;
-  font-weight: 500;
-  color: #383e47;
-  margin: 0 0 15px;
+const Logo = styled.img`
+  width: 150px;
+  display: block;
+  margin: 0 auto 25px;
 `;
 
 const PolicyP = styled.p`
@@ -67,12 +67,13 @@ const PolicyP = styled.p`
 const PolicyH4 = styled.h4`
   font-size: 15px;
   font-weight: 500;
-  color: #383e47;
+  color: ${props => props.theme.thirdColor};
   margin-bottom: 8px;
 `;
 
 const PolicyMenu = styled.ul`
   margin-bottom: 15px;
+  color: ${props => props.theme.thirdColor};
   &:last-child {
     margin-bottom: 0px;
   }
