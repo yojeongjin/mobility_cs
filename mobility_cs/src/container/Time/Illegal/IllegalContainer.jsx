@@ -63,7 +63,6 @@ export default function IllegalContainer() {
     window.open(url, '_blank', `width=${width},height=${height},left=${left},top=${top}`);
   };
 
-  console.log('dd');
   return (
     <Main>
       {totalInfo && (
