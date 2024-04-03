@@ -130,6 +130,10 @@ const ApplyBtn = styled.button`
   border-radius: 20px;
   color: #fff;
   font-size: 15px;
+  transition: all 400ms;
+  &:hover {
+    transform: translateY(-3px);
+  }
 `;
 
 const CloseBtn = styled(ApplyBtn)`

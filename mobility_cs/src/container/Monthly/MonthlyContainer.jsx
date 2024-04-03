@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getInform } from '../../redux/modules/inform';
@@ -46,7 +46,7 @@ export default function MonthlyContainer() {
     // 날짜 변경
     dispatch(setStart(new Date()));
     dispatch(setEnd(new Date()));
-  }, []);
+  }, [inform]);
 
   // popup 새창 열기
   const openPopup = idx => {

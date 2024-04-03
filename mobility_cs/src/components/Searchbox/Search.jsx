@@ -77,7 +77,7 @@ const SearchBox = styled.div`
 `;
 
 const SearchInput = styled.div`
-  height: 35px;
+  height: 40px;
   display: flex;
   align-items: center;
   margin-left: 14px;
@@ -106,7 +106,7 @@ const Input = styled.input`
 const SearchBtn = styled.button`
   // background-color: ${props => props.theme.primaryColor};
   background-color: ${props => props.theme.secondaryColor};
-  height: 105%;
+  height: 102%;
   color: #fff;
   padding: 0 15px;
   border-radius: 0 5px 5px 0;

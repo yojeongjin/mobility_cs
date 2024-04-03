@@ -101,7 +101,7 @@ const CalendarContainer = styled.div`
 
 const CalendarBox = styled.div`
   font-family: 'Pretendard';
-  height: 35px;
+  height: 40px;
   display: flex;
   align-items: center;
   border: 1px solid #e0e1e4;
@@ -110,11 +110,11 @@ const CalendarBox = styled.div`
   color: #555;
   .example-custom-input {
     font-family: 'Pretendard';
-    height: 35px;
+    height: 40px;
     padding: 0 10px;
     color: #555;
+    font-weight: 300;
     &:hover {
-      // color: #669900;
       color: ${props => props.theme.primaryDark};
     }
   }
