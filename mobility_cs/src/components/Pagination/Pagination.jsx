@@ -54,7 +54,7 @@ const PaginationItem = styled.li`
   cursor: pointer;
   color: ${props => (props.isActive ? '#02ca2d' : '#c6c6c6')};
   font-weight: ${props => (props.isActive ? '500' : '400')};
-
+  font-size: 15px;
   &:hover {
     background: ${props => props.theme.primaryColor};
     color: #fff;
