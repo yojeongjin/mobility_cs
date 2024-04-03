@@ -19,6 +19,8 @@ import Issue from './routes/Fixed/Issue/Issue';
 import IssuePopup from './routes/Fixed/Issue/IssuePopup';
 import Monthly from './routes/Monthly/Monthly';
 
+import Policy from './routes/Policy';
+
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +28,8 @@ function App() {
         <GlobalStyles />
         <Routes>
           <Route path="/signin" element={<Signin />} />
+          <Route path="/policy" element={<Policy />} />
+
           <Route element={<PrivateRoute />}>
             <Route path="/monthly" element={<Monthly />} />
             <Route path="/issue/popup/:idx" element={<IssuePopup />} />
