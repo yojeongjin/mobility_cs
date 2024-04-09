@@ -19,6 +19,7 @@ import Issue from './routes/Fixed/Issue/Issue';
 import IssuePopup from './routes/Fixed/Issue/IssuePopup';
 import Monthly from './routes/Monthly/Monthly';
 
+import Guide from './routes/Guide';
 import Policy from './routes/Policy';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/signin" element={<Signin />} />
           <Route path="/policy" element={<Policy />} />
+          <Route path="/guide" element={<Guide />} />
 
           <Route element={<PrivateRoute />}>
             <Route path="/monthly" element={<Monthly />} />
