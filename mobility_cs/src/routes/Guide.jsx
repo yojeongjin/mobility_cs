@@ -14,7 +14,6 @@ const GuideBase = styled.div`
   min-width: 280px;
   // height: calc(var(--vh, 1vh) * 100);
   margin: 0 auto;
-  padding: 20px;
   overflow-y: scroll;
 `;
 
