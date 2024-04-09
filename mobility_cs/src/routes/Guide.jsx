@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function Guide() {
   return (
     <GuideBase>
-      <GuideImg src={`${process.env.PUBLIC_URL}/챗봇안내_240409.png`} alt="챗봇 안내" />
+      <GuideImg src={`${process.env.PUBLIC_URL}/guide_img.png`} alt="챗봇 안내" />
     </GuideBase>
   );
 }
