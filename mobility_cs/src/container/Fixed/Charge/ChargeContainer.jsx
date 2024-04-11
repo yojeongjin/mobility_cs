@@ -17,7 +17,7 @@ export default function ChargeContainer() {
   const token = useAuth();
   const dispatch = useDispatch();
   const totalInfo = useSelector(state => state.inform.inform);
-  const inform = totalInfo.filter(info => info.refund_reason === '현장 요금 발생');
+  const inform = totalInfo.filter(info => info.refund_reason === '현장 요금');
 
   // pagination state
   const {
