@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 export default function IssuePopupComponent(props) {
-  const { popupState, applyStatus } = props;
+  const { popupState, applyStatus, cmtRef } = props;
 
   return (
     <IllegalPopup>
@@ -62,6 +62,28 @@ export default function IssuePopupComponent(props) {
               <TableRow>
                 <StyledTableCell>환불사유</StyledTableCell>
                 <StyledTableCell>{popupState.refund_user_reason}</StyledTableCell>
+              </TableRow>
+
+              {popupState.refund_state === '접수완료' ? (
+                <StyledTableRow>
+                  <StyledTableCell>비고</StyledTableCell>
+                  <StyledTableCell>
+                    <RemarkSpan>{popupState.refund_admin_comment}</RemarkSpan>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ) : (
+                <StyledTableRow>
+                  <StyledTableCell>비고</StyledTableCell>
+                  <StyledTableCell>
+                    <RemarkInput ref={cmtRef} />
+                  </StyledTableCell>
+                </StyledTableRow>
+              )}
+              <TableRow>
+                <StyledTableCell style={{ fontWeight: 600 }}>처리자</StyledTableCell>
+                <StyledTableCell style={{ fontWeight: 600 }}>
+                  {popupState.admin_userid}
+                </StyledTableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -128,4 +150,21 @@ const StyledTableCell = styled(TableCell)`
     color: ${props => props.theme.fontColor};
     border: none;
   }
+`;
+
+const RemarkInput = styled.input`
+  width: 100%;
+  height: 100%;
+  padding: 2px 10px;
+  border: 1px solid #ececec;
+`;
+
+const RemarkSpan = styled.span`
+  background: #fbfbfb;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  border: 1px solid #ececec;
 `;

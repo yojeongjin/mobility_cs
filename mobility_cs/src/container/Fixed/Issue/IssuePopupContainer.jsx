@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 // hooks
@@ -10,6 +10,7 @@ export default function IssuePopupContainer() {
   const token = useAuth();
   const params = useParams();
 
+  const cmtRef = useRef(null);
   const [popupState, setPopupState] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -39,6 +40,7 @@ export default function IssuePopupContainer() {
     let body = {
       id: params.idx,
       token: token,
+      refund_admin_comment: cmtRef.current.value,
       refund_state: '접수완료',
     };
 
@@ -63,6 +65,7 @@ export default function IssuePopupContainer() {
       modalOpen={modalOpen}
       setModalOpen={setModalOpen}
       applyStatus={applyStatus}
+      cmtRef={cmtRef}
     />
   );
 }

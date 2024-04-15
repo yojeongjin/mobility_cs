@@ -53,8 +53,10 @@ export default function IssueContainer() {
   // popup 새창 열기
   const openPopup = idx => {
     const url = `http://223.130.140.159:88/issue/popup/${idx}`;
+    // const url = `http://localhost:3000/issue/popup/${idx}`;
+
     const width = 1000;
-    const height = 700;
+    const height = 770;
 
     // 팝업을 부모 브라우저의 정중앙에 위치하도록함
     const left = window.screenX + (window.outerWidth - width) / 2;
