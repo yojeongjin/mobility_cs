@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 // hooks
@@ -10,6 +10,7 @@ export default function ChargePopupContainer() {
   const token = useAuth();
   const params = useParams();
 
+  const cmtRef = useRef(null);
   const [popupState, setPopupState] = useState({});
   const [imgUrlArr, setImgUrlArr] = useState([]);
   const [checkItems, setCheckItems] = useState([]);
@@ -86,6 +87,7 @@ export default function ChargePopupContainer() {
     let body = {
       id: params.idx,
       token: token,
+      refund_admin_comment: cmtRef.current.value,
       refund_state: '접수완료',
     };
 
@@ -114,6 +116,7 @@ export default function ChargePopupContainer() {
       setModalOpen={setModalOpen}
       downloadImg={downloadImg}
       applyStatus={applyStatus}
+      cmtRef={cmtRef}
     />
   );
 }

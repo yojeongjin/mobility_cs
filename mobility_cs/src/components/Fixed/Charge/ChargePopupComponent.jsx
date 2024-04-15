@@ -6,7 +6,8 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import { IoCloudDownloadOutline } from 'react-icons/io5';
 
 export default function ChargePopupComponent(props) {
-  const { popupState, imgUrlArr, checkItems, setCheckItems, downloadImg, applyStatus } = props;
+  const { popupState, imgUrlArr, checkItems, setCheckItems, downloadImg, applyStatus, cmtRef } =
+    props;
 
   const checkHandled = e => {
     checkItemHandler(e.target.id, e.target.checked);
@@ -135,6 +136,28 @@ export default function ChargePopupComponent(props) {
                     <StyledTableRow>
                       <StyledTableCell>총 결제 금액</StyledTableCell>
                       <StyledTableCell>{popupState.total_amount} 원</StyledTableCell>
+                    </StyledTableRow>
+
+                    {popupState.refund_state === '접수완료' ? (
+                      <TableRow>
+                        <StyledTableCell>비고</StyledTableCell>
+                        <StyledTableCell>
+                          <RemarkSpan>{popupState.refund_admin_comment}</RemarkSpan>
+                        </StyledTableCell>
+                      </TableRow>
+                    ) : (
+                      <TableRow>
+                        <StyledTableCell>비고</StyledTableCell>
+                        <StyledTableCell>
+                          <RemarkInput ref={cmtRef} />
+                        </StyledTableCell>
+                      </TableRow>
+                    )}
+                    <StyledTableRow>
+                      <StyledTableCell style={{ fontWeight: 600 }}>처리자</StyledTableCell>
+                      <StyledTableCell style={{ fontWeight: 600 }}>
+                        {popupState.admin_userid}
+                      </StyledTableCell>
                     </StyledTableRow>
                   </TableBody>
                 </Table>
@@ -352,4 +375,21 @@ const StyledTableCell = styled(TableCell)`
     // color: ${props => (props.isSubject ? '#aaa' : '#252525')};
     border: none;
   }
+`;
+
+const RemarkInput = styled.input`
+  width: 100%;
+  height: 100%;
+  padding: 2px 10px;
+  border: 1px solid #ececec;
+`;
+
+const RemarkSpan = styled.span`
+  background: #fbfbfb;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  border: 1px solid #ececec;
 `;

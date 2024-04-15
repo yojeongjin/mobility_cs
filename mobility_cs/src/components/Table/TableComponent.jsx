@@ -55,19 +55,6 @@ export default function TableComponent(props) {
                       <StyledTableCell>
                         {dayjs(info.created_at).format('YYYY년 MM월 DD일 HH:mm')}
                       </StyledTableCell>
-                      {/* {type === 'TIME' ? (
-                      <StyledTableCell>
-                        {info.refund_data_uri === '' ? (
-                          <Submit>
-                            <SubmitLabel isSubmit={info.refund_data_uri === ''}>미제출</SubmitLabel>
-                          </Submit>
-                        ) : (
-                          <Submit>
-                            <SubmitLabel isSubmit={info.refund_data_uri === ''}>제출</SubmitLabel>
-                          </Submit>
-                        )}
-                      </StyledTableCell>
-                    ) : null} */}
 
                       {type === 'TIME' ? (
                         <StyledTableCell>
